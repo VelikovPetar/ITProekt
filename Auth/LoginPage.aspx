@@ -20,7 +20,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    <h5>You have to be logged in to use the services!</h5>
+    <h3>You have to be logged in to use the services!</h3>
         <table class="auto-style1">
             <tr>
                 <td class="auto-style2">
