@@ -116,6 +116,7 @@ public partial class Auth_RegisterPatient : System.Web.UI.Page
         string ssn = txtSsn.Text;
         string password = Utils.CalculateMD5Hash(txtPassword.Text);
         string gpId = ddlGeneralPractioner.SelectedValue;
+        string phoneNumber = txtPhoneNumber.Text;
         string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
         MySqlConnection con = new MySqlConnection(cString);
         try
@@ -132,13 +133,25 @@ public partial class Auth_RegisterPatient : System.Web.UI.Page
             command.Parameters.AddWithValue("@password", password);
             command.Parameters.AddWithValue("@doctor_id", gpId == EMPTY_FIELD || gpId == "" ? null : gpId);
             int rows = command.ExecuteNonQuery();
+            string patientId = GetPatientIdBySsn(ssn, con);
             if (rows > 0)
             {
                 lblInfo.Text = "Success!";
+                if (phoneNumber != "")
+                {
+                    sql = "insert into phone_number(number, patient_id) " +
+                        "values(@number, @patient_id)";
+                    command = new MySqlCommand(sql, con);
+                    command.Parameters.AddWithValue("@number", phoneNumber);
+                    command.Parameters.AddWithValue("@patient_id", patientId);
+                    command.ExecuteNonQuery();
+                }
+                // TODO Save user id to Session
             } else
             {
                 lblInfo.Text = "Failure!";
             }
+            
         }
         catch (Exception ex)
         {
@@ -148,5 +161,19 @@ public partial class Auth_RegisterPatient : System.Web.UI.Page
         {
             con.Close();
         }
+    }
+
+    private string GetPatientIdBySsn(string ssn, MySqlConnection con)
+    {
+        string sql = "select id from patient where ssn=@ssn";
+        MySqlCommand command = new MySqlCommand(sql, con);
+        command.Parameters.AddWithValue("@ssn", ssn);
+        object result = command.ExecuteScalar();
+        string id = null;
+        if (result != null)
+        {
+            id = Convert.ToString(result);
+        }
+        return id;
     }
 }
