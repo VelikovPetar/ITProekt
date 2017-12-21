@@ -11,6 +11,9 @@ public partial class Auth_RegisterPatient : System.Web.UI.Page
 {
 
     private const string EMPTY_FIELD = "-----";
+    private const string MSG_EMAIL_IN_USE = "Email is already used!";
+    private const string MSG_ERROR_REGISTERING = "An error occured while creating the account!";
+    private const string MSG_SUCCESSFUL_REGISTER = "Account successfully created!";
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,37 +25,25 @@ public partial class Auth_RegisterPatient : System.Web.UI.Page
 
     private void LoadHospitals()
     {
-        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
-        MySqlConnection con = new MySqlConnection(cString);
-        try
+        DBUtils.HospitalsResponseWrapper response = DBUtils.GetAllHospitals();
+        if (response.ex != null)
         {
-            con.Open();
-            string sql = "select * from hospital";
-            MySqlCommand command = new MySqlCommand(sql, con);
-            MySqlDataReader reader = command.ExecuteReader();
+            lblInfo.Text = response.ex.ToString();
+        }
+        else
+        {
             ListItem item = new ListItem();
             item.Value = EMPTY_FIELD;
             item.Text = EMPTY_FIELD;
             ddlHospital.Items.Add(item);
-            while (reader.Read())
+            foreach (ListItem i in response.hospitals)
             {
-                item = new ListItem();
-                item.Value = reader["id"].ToString();
-                item.Text = reader["name"].ToString();
-                ddlHospital.Items.Add(item);
-            }
-            if (ddlHospital.Items.Count > 0)
-            {
-                PopulateGeneralPractionersForHospital(ddlHospital.Items[0].Value);
+                ddlHospital.Items.Add(i);
             }
         }
-        catch (Exception ex)
+        if (ddlHospital.Items.Count > 0)
         {
-            lblInfo.Text = ex.ToString();
-        }
-        finally
-        {
-            con.Close();
+            PopulateGeneralPractionersForHospital(ddlHospital.Items[0].Value);
         }
     }
 
@@ -79,7 +70,7 @@ public partial class Auth_RegisterPatient : System.Web.UI.Page
         {
             con.Open();
             string sql = "select id, name, surname from doctor " +
-                "where hospital_id=@id";
+                "where hospital_id=@id and is_gp=1";
             MySqlCommand command = new MySqlCommand(sql, con);
             command.Parameters.AddWithValue("@id", id);
             MySqlDataReader reader = command.ExecuteReader();
@@ -117,6 +108,11 @@ public partial class Auth_RegisterPatient : System.Web.UI.Page
         string password = Utils.CalculateMD5Hash(txtPassword.Text);
         string gpId = ddlGeneralPractioner.SelectedValue;
         string phoneNumber = txtPhoneNumber.Text;
+        if (DBUtils.EmailExists(email))
+        {
+            lblInfo.Text = MSG_EMAIL_IN_USE;
+            return;
+        }
         string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
         MySqlConnection con = new MySqlConnection(cString);
         try
@@ -133,25 +129,36 @@ public partial class Auth_RegisterPatient : System.Web.UI.Page
             command.Parameters.AddWithValue("@password", password);
             command.Parameters.AddWithValue("@doctor_id", gpId == EMPTY_FIELD || gpId == "" ? null : gpId);
             int rows = command.ExecuteNonQuery();
-            string patientId = GetPatientIdBySsn(ssn, con);
             if (rows > 0)
             {
-                lblInfo.Text = "Success!";
-                if (phoneNumber != "")
+                lblInfo.Text = MSG_SUCCESSFUL_REGISTER;
+                string patientId = GetPatientIdByEmail(email, con);
+                if (patientId != null)
                 {
-                    sql = "insert into phone_number(number, patient_id) " +
-                        "values(@number, @patient_id)";
-                    command = new MySqlCommand(sql, con);
-                    command.Parameters.AddWithValue("@number", phoneNumber);
-                    command.Parameters.AddWithValue("@patient_id", patientId);
-                    command.ExecuteNonQuery();
+                    if (phoneNumber != "")
+                    {
+                        sql = "insert into phone_number(number, patient_id) " +
+                            "values(@number, @patient_id)";
+                        command = new MySqlCommand(sql, con);
+                        command.Parameters.AddWithValue("@number", phoneNumber);
+                        command.Parameters.AddWithValue("@patient_id", patientId);
+                        command.ExecuteNonQuery();
+                    }
+                    // Save user id and type to Session (consider as logged in)
+                    Session["user_id"] = patientId;
+                    Session["user_type"] = UserType.PATIENT;
+                    // TODO Redirect
                 }
-                // TODO Save user id to Session
-            } else
-            {
-                lblInfo.Text = "Failure!";
+                else
+                {
+                    lblInfo.Text = MSG_ERROR_REGISTERING;
+                }
             }
-            
+            else
+            {
+                lblInfo.Text = MSG_ERROR_REGISTERING;
+            }
+
         }
         catch (Exception ex)
         {
@@ -163,11 +170,11 @@ public partial class Auth_RegisterPatient : System.Web.UI.Page
         }
     }
 
-    private string GetPatientIdBySsn(string ssn, MySqlConnection con)
+    private string GetPatientIdByEmail(string email, MySqlConnection con)
     {
-        string sql = "select id from patient where ssn=@ssn";
+        string sql = "select id from patient where email=@email";
         MySqlCommand command = new MySqlCommand(sql, con);
-        command.Parameters.AddWithValue("@ssn", ssn);
+        command.Parameters.AddWithValue("@email", email);
         object result = command.ExecuteScalar();
         string id = null;
         if (result != null)
