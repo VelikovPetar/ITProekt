@@ -90,13 +90,6 @@ public class DBUtils
         }
     }
 
-    public static string GetIdForEmail(string email)
-    {
-        string id = null;
-
-        return id;
-    }
-
     public class HospitalsResponseWrapper
     {
         public Exception ex { get; set; }

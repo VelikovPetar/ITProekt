@@ -9,6 +9,7 @@
         .auto-style1 {
             width: 100%;
         }
+
         .auto-style2 {
             width: 179px;
         }

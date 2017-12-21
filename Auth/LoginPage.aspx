@@ -9,9 +9,11 @@
         .auto-style1 {
             width: 100%;
         }
+
         .auto-style2 {
             width: 112px;
         }
+
         .auto-style3 {
             width: 245px;
         }
@@ -19,36 +21,36 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-    <h3>You have to be logged in to use the services!</h3>
-        <table class="auto-style1">
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="lblEmail" runat="server" Text="Email"></asp:Label>
-                </td>
-                <td>
-                    <asp:TextBox ID="txtEmail" runat="server" ValidationGroup="loginGroup"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtEmail" Display="None" ErrorMessage="You must enter email!" ValidationGroup="loginGroup"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" Display="None" ErrorMessage="You must enter a valid email!" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="loginGroup"></asp:RegularExpressionValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
-                </td>
-                <td>
-                    <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" ValidationGroup="loginGroup"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword" Display="None" ErrorMessage="You must enter password!" ValidationGroup="loginGroup"></asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" ValidationGroup="loginGroup" />
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
-    </div>
+        <div>
+            <h3>You have to be logged in to use the services!</h3>
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style2">
+                        <asp:Label ID="lblEmail" runat="server" Text="Email"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtEmail" runat="server" ValidationGroup="loginGroup"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtEmail" Display="None" ErrorMessage="You must enter email!" ValidationGroup="loginGroup"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" Display="None" ErrorMessage="You must enter a valid email!" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="loginGroup"></asp:RegularExpressionValidator>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">
+                        <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" ValidationGroup="loginGroup"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword" Display="None" ErrorMessage="You must enter password!" ValidationGroup="loginGroup"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">
+                        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" ValidationGroup="loginGroup" />
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </div>
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" ValidationGroup="loginGroup" />
         <asp:Label ID="lblInfo" runat="server"></asp:Label>
         <br />

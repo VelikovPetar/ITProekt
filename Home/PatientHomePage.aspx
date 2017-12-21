@@ -8,9 +8,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <h5>PATIENT HOMEPAGE</h5>
-    </div>
+        <div>
+            <h5>PATIENT HOMEPAGE</h5>
+        </div>
     </form>
 </body>
 </html>

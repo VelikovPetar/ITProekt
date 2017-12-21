@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Configuration;
-using System.Security.Cryptography;
-using System.Text;
-using System.Web.Security;
 
 public partial class Auth_LoginPage : System.Web.UI.Page
 {
@@ -77,7 +69,8 @@ public partial class Auth_LoginPage : System.Web.UI.Page
                     {
                         Session["user_type"] = UserType.DOCTOR_GP;
                         Response.Redirect("~/Home/GeneralPractitionerHomePage.aspx");
-                    } else
+                    }
+                    else
                     {
                         Session["user_type"] = UserType.DOCTOR_SPECIALIST;
                         Response.Redirect("~/Home/SpecialistHomePage.aspx");
