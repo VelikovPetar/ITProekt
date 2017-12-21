@@ -52,7 +52,7 @@ public partial class Auth_RegisterDoctor : System.Web.UI.Page
         string surname = txtSurname.Text;
         string email = txtEmail.Text;
         string hospitalId = ddlHospital.SelectedValue;
-        bool isGeneralPractioner = chkIsGeneralPractioner.Checked;
+        bool isGeneralPractitioner = chkIsGeneralPractitioner.Checked;
         string password = Utils.CalculateMD5Hash(txtPassword.Text);
         if (DBUtils.EmailExists(email))
         {
@@ -71,7 +71,7 @@ public partial class Auth_RegisterDoctor : System.Web.UI.Page
             command.Parameters.AddWithValue("@surname", surname);
             command.Parameters.AddWithValue("@email", email);
             command.Parameters.AddWithValue("@hospital_id", hospitalId);
-            command.Parameters.AddWithValue("@is_gp", isGeneralPractioner);
+            command.Parameters.AddWithValue("@is_gp", isGeneralPractitioner);
             command.Parameters.AddWithValue("@password", password);
             int rows = command.ExecuteNonQuery();
             if (rows > 0)
@@ -81,9 +81,17 @@ public partial class Auth_RegisterDoctor : System.Web.UI.Page
                 if (doctorId != null)
                 {
                     // Save user id and type to Session (consider as logged in)
+                    // Redirect to appropriate home page
                     Session["user_id"] = doctorId;
-                    Session["user_type"] = isGeneralPractioner ? UserType.DOCTOR_GP : UserType.DOCTOR_SPECIALIST;
-                    // TODO Redirect
+                    if (isGeneralPractitioner)
+                    {
+                        Session["user_type"] = UserType.DOCTOR_GP;
+                        Response.Redirect("~/Home/GeneralPractitionerHomePage.aspx");
+                    } else
+                    {
+                        Session["user_type"] = UserType.DOCTOR_SPECIALIST;
+                        Response.Redirect("~/Home/SpecialistHomePage.aspx");
+                    }
                 }
                 else
                 {

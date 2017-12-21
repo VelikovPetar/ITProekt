@@ -145,9 +145,10 @@ public partial class Auth_RegisterPatient : System.Web.UI.Page
                         command.ExecuteNonQuery();
                     }
                     // Save user id and type to Session (consider as logged in)
+                    // Redirect to appropriate home page
                     Session["user_id"] = patientId;
                     Session["user_type"] = UserType.PATIENT;
-                    // TODO Redirect
+                    Response.Redirect("~/Home/PatientHomePage.aspx");
                 }
                 else
                 {

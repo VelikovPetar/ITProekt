@@ -63,7 +63,7 @@
                     <asp:Label ID="lblGeneralPractioner" runat="server" Text="General Practioner"></asp:Label>
                 </td>
                 <td>
-                    <asp:CheckBox ID="chkIsGeneralPractioner" runat="server" />
+                    <asp:CheckBox ID="chkIsGeneralPractitioner" runat="server" />
                 </td>
             </tr>
             <tr>
