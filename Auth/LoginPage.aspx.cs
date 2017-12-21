@@ -50,7 +50,12 @@ public partial class Auth_LoginPage : System.Web.UI.Page
                 PATIENTS_TABLE_NAME, con);
             if (reader.HasRows)
             {
-                // TODO Redirect to Patients homepage
+                // Save user id and type to Session (consider as logged in)
+                // Redirect to appropriate home page
+                reader.Read();
+                Session["user_id"] = reader["id"].ToString();
+                Session["user_type"] = UserType.PATIENT;
+                Response.Redirect("~/Home/PatientHomePage.aspx");
                 lblInfo.Text = "Patient";
                 lblInfo.ForeColor = System.Drawing.Color.Black;
             }
@@ -63,8 +68,21 @@ public partial class Auth_LoginPage : System.Web.UI.Page
                     DOCTORS_TABLE_NAME, con);
                 if (reader.HasRows)
                 {
-                    // TODO Redirect to Doctors homepage
-                    lblInfo.Text = "Doctor";
+                    // Save user id and type to Session (consider as logged in)
+                    // Redirect to appropriate home page
+                    reader.Read();
+                    Session["user_id"] = reader["id"].ToString();
+                    string isGp = reader["is_gp"].ToString();
+                    if (isGp == "True")
+                    {
+                        Session["user_type"] = UserType.DOCTOR_GP;
+                        Response.Redirect("~/Home/GeneralPractitionerHomePage.aspx");
+                    } else
+                    {
+                        Session["user_type"] = UserType.DOCTOR_SPECIALIST;
+                        Response.Redirect("~/Home/SpecialistHomePage.aspx");
+                    }
+                    lblInfo.Text = isGp;
                     lblInfo.ForeColor = System.Drawing.Color.Black;
                 }
                 else
