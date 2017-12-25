@@ -135,7 +135,7 @@
                             <asp:View ID="viewPastAppointments" runat="server">
                                 <h4>Past appointments</h4>
                                 <p>
-                                    <asp:GridView ID="gvPastAppointments" runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnSelectedIndexChanged="gvPastAppointments_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="gvPastAppointments_PageIndexChanging" PageSize="1">
+                                    <asp:GridView ID="gvPastAppointments" runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnSelectedIndexChanged="gvPastAppointments_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="gvPastAppointments_PageIndexChanging" PageSize="5">
                                         <Columns>
                                             <asp:BoundField DataField="id" HeaderText="Appointment Id" />
                                             <asp:BoundField DataField="date_time" HeaderText="Date and time" />
@@ -149,7 +149,7 @@
                             <asp:View ID="viewUpcomingAppointments" runat="server">
                                 <h4>Upcoming appointments</h4>
                                 <p>
-                                    <asp:GridView ID="gvUpcomingAppointments" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvUpcomingAppointments_SelectedIndexChanged" AllowPaging="True" DataKeyNames="id" OnPageIndexChanging="gvUpcomingAppointments_PageIndexChanging" PageSize="1">
+                                    <asp:GridView ID="gvUpcomingAppointments" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvUpcomingAppointments_SelectedIndexChanged" AllowPaging="True" DataKeyNames="id" OnPageIndexChanging="gvUpcomingAppointments_PageIndexChanging" PageSize="5">
                                         <Columns>
                                             <asp:BoundField DataField="id" HeaderText="AppointmentId" />
                                             <asp:BoundField DataField="date_time" HeaderText="Date and time" />

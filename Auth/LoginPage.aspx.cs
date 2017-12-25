@@ -47,7 +47,8 @@ public partial class Auth_LoginPage : System.Web.UI.Page
                 reader.Read();
                 Session["user_id"] = reader["id"].ToString();
                 Session["user_type"] = UserType.PATIENT;
-                Response.Redirect("~/Home/PatientHomePage.aspx");
+                Response.Redirect("~/Home/PatientHomePage.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
             else
             {
@@ -66,12 +67,14 @@ public partial class Auth_LoginPage : System.Web.UI.Page
                     if (isGp == "True")
                     {
                         Session["user_type"] = UserType.DOCTOR_GP;
-                        Response.Redirect("~/Home/GeneralPractitionerHomePage.aspx");
+                        Response.Redirect("~/Home/GeneralPractitionerHomePage.aspx", false);
+                        Context.ApplicationInstance.CompleteRequest();
                     }
                     else
                     {
                         Session["user_type"] = UserType.DOCTOR_SPECIALIST;
-                        Response.Redirect("~/Home/SpecialistHomePage.aspx");
+                        Response.Redirect("~/Home/SpecialistHomePage.aspx", false);
+                        Context.ApplicationInstance.CompleteRequest();
                     }
                     lblInfo.Text = isGp;
                     lblInfo.ForeColor = System.Drawing.Color.Black;
@@ -116,12 +119,14 @@ public partial class Auth_LoginPage : System.Web.UI.Page
     protected void btnRegisterPatient_Click(object sender, EventArgs e)
     {
         lblInfo.Text = "Redirecting to patients...";
-        Response.Redirect("~/Auth/RegisterPatient.aspx");
+        Response.Redirect("~/Auth/RegisterPatient.aspx", false);
+        Context.ApplicationInstance.CompleteRequest();
     }
 
     protected void btnRegisterDoctor_Click(object sender, EventArgs e)
     {
         lblInfo.Text = "Redirecting to doctors...";
-        Response.Redirect("~/Auth/RegisterDoctor.aspx");
+        Response.Redirect("~/Auth/RegisterDoctor.aspx", false);
+        Context.ApplicationInstance.CompleteRequest();
     }
 }
