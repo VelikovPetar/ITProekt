@@ -146,9 +146,15 @@ public partial class Home_PatientDefaultPage : System.Web.UI.Page
         }
     }
 
-    protected string GetAppointmentDetailsUrl(object id)
+    protected void gvPastAppointments_SelectedIndexChanged(object sender, EventArgs e)
     {
-        string url = "~/Appointments/AppointmentDetails.aspx?appId=" + Server.UrlEncode(id.ToString());
-        return url;
+        string id = gvPastAppointments.SelectedDataKey.Value.ToString();
+        Response.Redirect("~/Appointments/AppointmentDetails.aspx?appId=" + Server.UrlEncode(id.ToString()));
+    }
+
+    protected void gvUpcomingAppointments_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        string id = gvUpcomingAppointments.SelectedDataKey.Value.ToString();
+        Response.Redirect("~/Appointments/AppointmentDetails.aspx?appId=" + Server.UrlEncode(id.ToString()));
     }
 }

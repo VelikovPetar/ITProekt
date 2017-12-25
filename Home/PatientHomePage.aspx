@@ -135,17 +135,13 @@
                             <asp:View ID="viewPastAppointments" runat="server">
                                 <h4>Past appointments</h4>
                                 <p>
-                                    <asp:GridView ID="gvPastAppointments" runat="server" AutoGenerateColumns="False" DataKeyNames="id">
+                                    <asp:GridView ID="gvPastAppointments" runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnSelectedIndexChanged="gvPastAppointments_SelectedIndexChanged">
                                         <Columns>
                                             <asp:BoundField DataField="id" HeaderText="Appointment Id" />
                                             <asp:BoundField DataField="date_time" HeaderText="Date and time" />
                                             <asp:BoundField DataField="full_name" HeaderText="Doctor" />
                                             <asp:CheckBoxField DataField="has_report" HeaderText="Report"/>
-                                            <asp:TemplateField>
-                                                <ItemTemplate>
-                                                    <asp:HyperLink runat="server" Text="Details" NavigateUrl='<%# GetAppointmentDetailsUrl(Eval("id")) %>'></asp:HyperLink>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                            <asp:CommandField SelectText="Details" ShowSelectButton="True" />
                                         </Columns>
                                     </asp:GridView>
                                 </p>
@@ -153,17 +149,13 @@
                             <asp:View ID="viewUpcomingAppointments" runat="server">
                                 <h4>Upcoming appointments</h4>
                                 <p>
-                                    <asp:GridView ID="gvUpcomingAppointments" runat="server" AutoGenerateColumns="False">
+                                    <asp:GridView ID="gvUpcomingAppointments" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvUpcomingAppointments_SelectedIndexChanged" DataKeyNames="id">
                                         <Columns>
                                             <asp:BoundField DataField="id" HeaderText="AppointmentId" />
                                             <asp:BoundField DataField="date_time" HeaderText="Date and time" />
                                             <asp:BoundField DataField="full_name" HeaderText="Doctor" />
                                             <asp:CheckBoxField DataField="has_report" HeaderText="Report" />
-                                            <asp:TemplateField>
-                                                <ItemTemplate>
-                                                    <asp:HyperLink runat="server" Text="Details" NavigateUrl='<%# GetAppointmentDetailsUrl(Eval("id")) %>'></asp:HyperLink>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                            <asp:CommandField SelectText="Details" ShowSelectButton="True" />
                                         </Columns>
                                     </asp:GridView>
                                 </p>
