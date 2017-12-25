@@ -23,9 +23,9 @@ public partial class Auth_RegisterPatient : System.Web.UI.Page
     private void LoadHospitals()
     {
         DBUtils.HospitalsResponseWrapper response = DBUtils.GetAllHospitals();
-        if (response.ex != null)
+        if (response.Ex != null)
         {
-            lblInfo.Text = response.ex.ToString();
+            lblInfo.Text = response.Ex.ToString();
         }
         else
         {
@@ -33,7 +33,7 @@ public partial class Auth_RegisterPatient : System.Web.UI.Page
             item.Value = EMPTY_FIELD;
             item.Text = EMPTY_FIELD;
             ddlHospital.Items.Add(item);
-            foreach (ListItem i in response.hospitals)
+            foreach (ListItem i in response.Hospitals)
             {
                 ddlHospital.Items.Add(i);
             }
