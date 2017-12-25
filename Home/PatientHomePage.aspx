@@ -135,12 +135,17 @@
                             <asp:View ID="viewPastAppointments" runat="server">
                                 <h4>Past appointments</h4>
                                 <p>
-                                    <asp:GridView ID="gvPastAppointments" runat="server" AutoGenerateColumns="False">
+                                    <asp:GridView ID="gvPastAppointments" runat="server" AutoGenerateColumns="False" DataKeyNames="id">
                                         <Columns>
                                             <asp:BoundField DataField="id" HeaderText="Appointment Id" />
                                             <asp:BoundField DataField="date_time" HeaderText="Date and time" />
                                             <asp:BoundField DataField="full_name" HeaderText="Doctor" />
-                                            <asp:CheckBoxField DataField="has_report" HeaderText="Report" />
+                                            <asp:CheckBoxField DataField="has_report" HeaderText="Report"/>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                    <asp:HyperLink runat="server" Text="Details" NavigateUrl='<%# GetAppointmentDetailsUrl(Eval("id")) %>'></asp:HyperLink>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
                                 </p>
@@ -154,6 +159,11 @@
                                             <asp:BoundField DataField="date_time" HeaderText="Date and time" />
                                             <asp:BoundField DataField="full_name" HeaderText="Doctor" />
                                             <asp:CheckBoxField DataField="has_report" HeaderText="Report" />
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                    <asp:HyperLink runat="server" Text="Details" NavigateUrl='<%# GetAppointmentDetailsUrl(Eval("id")) %>'></asp:HyperLink>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
                                 </p>

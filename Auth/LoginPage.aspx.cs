@@ -48,8 +48,6 @@ public partial class Auth_LoginPage : System.Web.UI.Page
                 Session["user_id"] = reader["id"].ToString();
                 Session["user_type"] = UserType.PATIENT;
                 Response.Redirect("~/Home/PatientHomePage.aspx");
-                lblInfo.Text = "Patient";
-                lblInfo.ForeColor = System.Drawing.Color.Black;
             }
             else
             {

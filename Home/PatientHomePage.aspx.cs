@@ -134,4 +134,21 @@ public partial class Home_PatientDefaultPage : System.Web.UI.Page
         return true;
     }
 
+
+    protected void gvPastAppointments_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        HyperLink hl = (HyperLink)e.Row.FindControl("Details");
+        if (hl != null)
+        {
+            DataRowView drv = (DataRowView)e.Row.DataItem;
+            string id = drv["id"].ToString();
+            hl.NavigateUrl = "~/Appointments/AppointmentDetails?appId=" + id;
+        }
+    }
+
+    protected string GetAppointmentDetailsUrl(object id)
+    {
+        string url = "~/Appointments/AppointmentDetails.aspx?appId=" + Server.UrlEncode(id.ToString());
+        return url;
+    }
 }
