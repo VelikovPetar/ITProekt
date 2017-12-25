@@ -32,6 +32,10 @@ public partial class Home_PatientDefaultPage : System.Web.UI.Page
             DisplayPatient();
             ReadPastAppointments();
             ReadUpcomingAppointments();
+            lblInfo.Text = "Not PB";
+        } else
+        {
+            lblInfo.Text = "PB";
         }
     }
 
@@ -89,6 +93,7 @@ public partial class Home_PatientDefaultPage : System.Web.UI.Page
         DataSet dataSet = DBUtils.GetAppointmentsForPatient(id, upcoming: false);
         gvPastAppointments.DataSource = dataSet;
         gvPastAppointments.DataBind();
+        ViewState["past_appointments"] = dataSet;
     }
 
     private void ReadUpcomingAppointments()
@@ -97,6 +102,7 @@ public partial class Home_PatientDefaultPage : System.Web.UI.Page
         DataSet dataSet = DBUtils.GetAppointmentsForPatient(id, upcoming: true);
         gvUpcomingAppointments.DataSource = dataSet;
         gvUpcomingAppointments.DataBind();
+        ViewState["upcoming_appointments"] = dataSet;
     }
 
     //private void LoadPatient()
@@ -134,16 +140,10 @@ public partial class Home_PatientDefaultPage : System.Web.UI.Page
         return true;
     }
 
-
-    protected void gvPastAppointments_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected string GetAppointmentDetailsUrl(object id)
     {
-        HyperLink hl = (HyperLink)e.Row.FindControl("Details");
-        if (hl != null)
-        {
-            DataRowView drv = (DataRowView)e.Row.DataItem;
-            string id = drv["id"].ToString();
-            hl.NavigateUrl = "~/Appointments/AppointmentDetails?appId=" + id;
-        }
+        string url = "~/Appointments/AppointmentDetails.aspx?appId=" + Server.UrlEncode(id.ToString());
+        return url;
     }
 
     protected void gvPastAppointments_SelectedIndexChanged(object sender, EventArgs e)
@@ -156,5 +156,23 @@ public partial class Home_PatientDefaultPage : System.Web.UI.Page
     {
         string id = gvUpcomingAppointments.SelectedDataKey.Value.ToString();
         Response.Redirect("~/Appointments/AppointmentDetails.aspx?appId=" + Server.UrlEncode(id.ToString()));
+    }
+
+    protected void gvPastAppointments_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvPastAppointments.PageIndex = e.NewPageIndex;
+        gvPastAppointments.SelectedIndex = -1;
+        DataSet ds = (DataSet)ViewState["past_appointments"];
+        gvPastAppointments.DataSource = ds;
+        gvPastAppointments.DataBind();
+    }
+
+    protected void gvUpcomingAppointments_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvUpcomingAppointments.PageIndex = e.NewPageIndex;
+        gvUpcomingAppointments.SelectedIndex = -1;
+        DataSet ds = (DataSet)ViewState["upcoming_appointments"];
+        gvUpcomingAppointments.DataSource = ds;
+        gvUpcomingAppointments.DataBind();
     }
 }
