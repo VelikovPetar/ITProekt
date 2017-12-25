@@ -32,10 +32,6 @@ public partial class Home_PatientDefaultPage : System.Web.UI.Page
             DisplayPatient();
             ReadPastAppointments();
             ReadUpcomingAppointments();
-            lblInfo.Text = "Not PB";
-        } else
-        {
-            lblInfo.Text = "PB";
         }
     }
 

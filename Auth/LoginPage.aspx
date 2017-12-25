@@ -54,8 +54,6 @@
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" ValidationGroup="loginGroup" />
         <asp:Label ID="lblInfo" runat="server"></asp:Label>
         <br />
-        <asp:Label ID="lblQuery" runat="server"></asp:Label>
-        <br />
         <table class="auto-style1">
             <tr>
                 <td class="auto-style3">

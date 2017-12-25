@@ -140,7 +140,7 @@
                                             <asp:BoundField DataField="id" HeaderText="Appointment Id" />
                                             <asp:BoundField DataField="date_time" HeaderText="Date and time" />
                                             <asp:BoundField DataField="full_name" HeaderText="Doctor" />
-                                            <asp:CheckBoxField DataField="has_report" HeaderText="Report"/>
+                                            <asp:CheckBoxField DataField="has_report" HeaderText="Report" />
                                             <asp:CommandField SelectText="Details" ShowSelectButton="True" />
                                         </Columns>
                                     </asp:GridView>
@@ -166,7 +166,6 @@
             </table>
 
         </div>
-        <asp:Label ID="lblInfo" runat="server"></asp:Label>
     </form>
 </body>
 </html>

@@ -13,11 +13,7 @@ public partial class Auth_LoginPage : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            lblInfo.Text = "Not postback";
-        }
-        else
-        {
-            lblInfo.Text = "Postback";
+
         }
     }
 
@@ -112,7 +108,6 @@ public partial class Auth_LoginPage : System.Web.UI.Page
         {
             command.Parameters.AddWithValue("@" + columns[i], values[i]);
         }
-        lblQuery.Text = command.CommandText;
         return command.ExecuteReader();
     }
 
