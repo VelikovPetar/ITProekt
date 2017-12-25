@@ -22,13 +22,13 @@ public partial class Auth_RegisterDoctor : System.Web.UI.Page
     private void LoadHospitals()
     {
         DBUtils.HospitalsResponseWrapper response = DBUtils.GetAllHospitals();
-        if (response.ex != null)
+        if (response.Ex != null)
         {
-            lblInfo.Text = response.ex.ToString();
+            lblInfo.Text = response.Ex.ToString();
         }
         else
         {
-            foreach (ListItem i in response.hospitals)
+            foreach (ListItem i in response.Hospitals)
             {
                 ddlHospital.Items.Add(i);
             }
