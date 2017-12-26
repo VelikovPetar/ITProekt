@@ -208,4 +208,129 @@ public class DBUtils
             con.Close();
         }
     }
+
+    public static Appointment GetAppointmentById(string id)
+    {
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = "select app.id, patient.id as p_id, patient.name as p_name, patient.surname as p_surname, patient.ssn, doctor.id as d_id, doctor.name as d_name, doctor.surname as d_surname, app.date_time, app.has_report " +
+                "from ((select * from appointment where id=@id) as app inner join patient on app.patient_id = patient.id) " +
+                "inner join doctor on app.doctor_id = doctor.id";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            command.Parameters.AddWithValue("@id", id);
+            MySqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                string patientId = reader["p_id"].ToString();
+                string patientName = reader["p_name"].ToString();
+                string patientSurname = reader["p_surname"].ToString();
+                string patientSsn = reader["ssn"].ToString();
+                string doctorId = reader["d_id"].ToString();
+                string doctorName = reader["d_name"].ToString();
+                string doctorSurname = reader["d_surname"].ToString();
+                string dateTime = reader["date_time"].ToString();
+                bool hasReport = Convert.ToBoolean(reader["has_report"].ToString());
+                return new Appointment(id, patientId, patientName, patientSurname, patientSsn, doctorId, doctorName, doctorSurname, dateTime, hasReport);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
+    public static Report GetReportForAppointmentId(string appId)
+    {
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = "select * from report where appointment_id=@appId limit 1";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            command.Parameters.AddWithValue("@appId", appId);
+            MySqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                string id = reader["id"].ToString();
+                string diagnosis = reader["diagnosis"].ToString();
+                string therapy = reader["therapy"].ToString();
+                string remark = reader["remark"].ToString();
+                return new Report(id, diagnosis, therapy, remark, appId);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
+    public static bool UpdateReport(string id, string diagnosis, string therapy, string remark)
+    {
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = "update report set diagnosis=@diagnosis, therapy=@therapy, remark=@remark " +
+                "where id=@id";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@diagnosis", diagnosis);
+            command.Parameters.AddWithValue("@therapy", therapy);
+            command.Parameters.AddWithValue("@remark", remark);
+            int rows = command.ExecuteNonQuery();
+            return rows > 0;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
+    public static bool DeleteReport(string id)
+    {
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = "delete from report where id=@id";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            command.Parameters.AddWithValue("@id", id);
+            int rows = command.ExecuteNonQuery();
+            return rows > 0;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
 }
