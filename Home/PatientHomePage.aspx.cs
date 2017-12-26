@@ -12,6 +12,7 @@ public partial class Home_PatientDefaultPage : System.Web.UI.Page
 {
 
     private const string MSG_ERROR_READING_USER_INFO = "Error reading user info.";
+    private const string MSG_ERROR_READING_APPOINTMENTS = "[Something went wrong while reading appointments]";
 
     private Patient patient;
     private Doctor doctor;
@@ -21,7 +22,8 @@ public partial class Home_PatientDefaultPage : System.Web.UI.Page
         if (!IsPatientLoggedId())
         {
             // Redirect to error page
-            Response.Redirect("~/ErrorPages/NotLoggedIn.aspx");
+            Response.Redirect("~/ErrorPages/NotLoggedIn.aspx", false);
+            Context.ApplicationInstance.CompleteRequest();
             return;
         }
         if (!Page.IsPostBack)
@@ -79,7 +81,8 @@ public partial class Home_PatientDefaultPage : System.Web.UI.Page
         else
         {
             // Redirect to error
-            Response.Redirect("~/ErrorPages/Oops.aspx");
+            Response.Redirect("~/ErrorPages/Oops.aspx", false);
+            Context.ApplicationInstance.CompleteRequest();
         }
     }
 
@@ -87,18 +90,36 @@ public partial class Home_PatientDefaultPage : System.Web.UI.Page
     {
         string id = (string)Session["user_id"];
         DataSet dataSet = DBUtils.GetAppointmentsForPatient(id, upcoming: false);
-        gvPastAppointments.DataSource = dataSet;
-        gvPastAppointments.DataBind();
-        ViewState["past_appointments"] = dataSet;
+        if (dataSet == null)
+        {
+            dataSet = new DataSet();
+            lblPastAppointmentsInfo.Text = MSG_ERROR_READING_APPOINTMENTS;
+        }
+        else
+        {
+            gvPastAppointments.DataSource = dataSet;
+            gvPastAppointments.DataBind();
+            ViewState["past_appointments"] = dataSet;
+            lblPastAppointmentsInfo.Text = "";
+        }
     }
 
     private void ReadUpcomingAppointments()
     {
         string id = (string)Session["user_id"];
         DataSet dataSet = DBUtils.GetAppointmentsForPatient(id, upcoming: true);
-        gvUpcomingAppointments.DataSource = dataSet;
-        gvUpcomingAppointments.DataBind();
-        ViewState["upcoming_appointments"] = dataSet;
+        if (dataSet == null)
+        {
+            dataSet = new DataSet();
+            lblUpcomingAppointmentsInfo.Text = MSG_ERROR_READING_APPOINTMENTS;
+        }
+        else
+        {
+            gvUpcomingAppointments.DataSource = dataSet;
+            gvUpcomingAppointments.DataBind();
+            ViewState["upcoming_appointments"] = dataSet;
+            lblUpcomingAppointmentsInfo.Text = "";
+        }
     }
 
     //private void LoadPatient()
