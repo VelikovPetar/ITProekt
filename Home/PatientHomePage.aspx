@@ -133,7 +133,7 @@
                                 </table>
                             </asp:View>
                             <asp:View ID="viewPastAppointments" runat="server">
-                                <h4>Past appointments<asp:Label ID="lblPastAppointmentsInfo" runat="server"></asp:Label>
+                                <h4>Past appointments<asp:Label ID="lblPastAppointmentsInfo" runat="server" ForeColor="#CC0000"></asp:Label>
                                 </h4>
                                 <p>
                                     <asp:GridView ID="gvPastAppointments" runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnSelectedIndexChanged="gvPastAppointments_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="gvPastAppointments_PageIndexChanging" PageSize="5">
@@ -148,7 +148,7 @@
                                 </p>
                             </asp:View>
                             <asp:View ID="viewUpcomingAppointments" runat="server">
-                                <h4>Upcoming appointments<asp:Label ID="lblUpcomingAppointmentsInfo" runat="server"></asp:Label>
+                                <h4>Upcoming appointments<asp:Label ID="lblUpcomingAppointmentsInfo" runat="server" ForeColor="#CC0000"></asp:Label>
                                 </h4>
                                 <p>
                                     <asp:GridView ID="gvUpcomingAppointments" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvUpcomingAppointments_SelectedIndexChanged" AllowPaging="True" DataKeyNames="id" OnPageIndexChanging="gvUpcomingAppointments_PageIndexChanging" PageSize="5">
