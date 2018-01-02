@@ -209,6 +209,33 @@ public class DBUtils
         }
     }
 
+    public static DataSet GetAppointmentsForDoctor(string doctorId)
+    {
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = "select app.id, date_time, ssn, concat(name, ' ', surname) as full_name " +
+                "from appointment as app inner join patient on app.patient_id=patient.id " +
+                "where app.doctor_id=@doctorId";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            command.Parameters.AddWithValue("@doctorId", doctorId);
+            DataSet dataSet = new DataSet();
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            adapter.Fill(dataSet, "appointments");
+            return dataSet;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
     public static Appointment GetAppointmentById(string id)
     {
         string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
@@ -327,6 +354,90 @@ public class DBUtils
         catch (Exception)
         {
             return false;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
+    public static Hospital FindHospitalById(string id)
+    {
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = "select * from hospital where id=@id";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            command.Parameters.AddWithValue("@id", id);
+            MySqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                string name = reader["name"].ToString();
+                string adress = reader["address"].ToString();
+                Hospital hospital = new Hospital(id, name, adress);
+                return hospital;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
+    public static DataSet GetPatientsForGp(string gpId)
+    {
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = "select id, name, surname, concat(name, ' ', surname) as full_name, ssn, email, date_of_birth " +
+                "from patient where doctor_id=@gpId";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            command.Parameters.AddWithValue("@gpId", gpId);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds, "patients");
+            return ds;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
+    public static DataSet GetPatientsWithoutGp()
+    {
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = "select id, name, surname, concat(name, ' ', surname) as full_name, ssn, email, date_of_birth " +
+                "from patient where doctor_id is null";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds, "patients");
+            return ds;
+        }
+        catch (Exception)
+        {
+            return null;
         }
         finally
         {
