@@ -206,4 +206,9 @@ public partial class Home_GeneralPractionerDefaultPage : System.Web.UI.Page
         string id = gvAllAppointments.SelectedDataKey.Value.ToString();
         Response.Redirect("~/Appointments/AppointmentDetails.aspx?appId=" + Server.UrlEncode(id));
     }
+
+    protected void btnSpecialistAppointment_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Appointments/AddAppointment.aspx");
+    }
 }

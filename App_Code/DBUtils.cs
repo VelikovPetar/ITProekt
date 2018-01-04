@@ -45,7 +45,7 @@ public class DBUtils
         }
     }
 
-    public static List<Doctor> GetDoctorsForHospital(string hospitalId)
+    public static List<Doctor> GetDoctorsForHospital(string hospitalId, string isGp = "1")
     {
         List<Doctor> doctors = new List<Doctor>();
         string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
@@ -54,9 +54,10 @@ public class DBUtils
         {
             con.Open();
             string sql = "select id, name, surname from doctor " +
-                "where hospital_id=@id and is_gp=1";
+                "where hospital_id=@id and is_gp=@isGp";
             MySqlCommand command = new MySqlCommand(sql, con);
             command.Parameters.AddWithValue("@id", hospitalId);
+            command.Parameters.AddWithValue("@isGp", isGp);
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {

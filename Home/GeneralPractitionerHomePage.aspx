@@ -153,7 +153,7 @@
                 </td>
             </tr>
         </table>
-        <asp:Button ID="btnSpecialistAppointment" runat="server" Text="Make appointment with specialist" />
+        <asp:Button ID="btnSpecialistAppointment" runat="server" Text="Make appointment with specialist" OnClick="btnSpecialistAppointment_Click" />
     </form>
 </body>
 </html>
