@@ -20,7 +20,7 @@
                             var id = value.Id;
                             var name = value.Name;
                             var surname = value.Surname;
-                            var option = '<option value=' + id + '>' + "Dr. " + name + " " + surname + '</option>';
+                            var option = '<option value="' + id + '">' + "Dr. " + name + " " + surname + '</option>';
                             $('#ddlGeneralPractioner').append(option);
                         });
                     }
