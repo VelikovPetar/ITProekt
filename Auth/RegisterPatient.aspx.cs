@@ -18,6 +18,12 @@ public partial class Auth_RegisterPatient : System.Web.UI.Page
         {
             LoadHospitals();
         }
+        else
+        {
+            ddlGeneralPractioner.Items.Clear();
+            ListItem selectedDoctor = new ListItem { Value = hiddenFieldDoctorId.Value, Text = hiddenFieldDoctorName.Value };
+            ddlGeneralPractioner.Items.Add(selectedDoctor);
+        }
     }
 
     private void LoadHospitals()
@@ -38,55 +44,7 @@ public partial class Auth_RegisterPatient : System.Web.UI.Page
                 ddlHospital.Items.Add(i);
             }
         }
-        if (ddlHospital.Items.Count > 0)
-        {
-            PopulateGeneralPractionersForHospital(ddlHospital.Items[0].Value);
-        }
-    }
-
-    // TODO Mozebi so AJAX Povik do web service
-    protected void ddlHospital_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        PopulateGeneralPractionersForHospital(ddlHospital.SelectedValue);
-    }
-
-    private void PopulateGeneralPractionersForHospital(string id)
-    {
-        ddlGeneralPractioner.Items.Clear();
-        if (id == EMPTY_FIELD)
-        {
-            ListItem item = new ListItem();
-            item.Value = EMPTY_FIELD;
-            item.Text = EMPTY_FIELD;
-            ddlGeneralPractioner.Items.Add(item);
-            return;
-        }
-        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
-        MySqlConnection con = new MySqlConnection(cString);
-        try
-        {
-            con.Open();
-            string sql = "select id, name, surname from doctor " +
-                "where hospital_id=@id and is_gp=1";
-            MySqlCommand command = new MySqlCommand(sql, con);
-            command.Parameters.AddWithValue("@id", id);
-            MySqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                ListItem item = new ListItem();
-                item.Value = reader["id"].ToString();
-                item.Text = "Dr. " + reader["name"] + " " + reader["surname"];
-                ddlGeneralPractioner.Items.Add(item);
-            }
-        }
-        catch (Exception ex)
-        {
-            lblInfo.Text = ex.ToString();
-        }
-        finally
-        {
-            con.Close();
-        }
+        ddlGeneralPractioner.Items.Add(new ListItem(EMPTY_FIELD, EMPTY_FIELD));
     }
 
 

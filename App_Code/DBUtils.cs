@@ -14,6 +14,70 @@ public class DBUtils
 
     }
 
+    public static List<Hospital> GetHospitals()
+    {
+        List<Hospital> hospitals = new List<Hospital>();
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = "select * from hospital";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                string id = reader["id"].ToString();
+                string name = reader["name"].ToString();
+                string address = reader["address"].ToString();
+                Hospital hospital = new Hospital(id, name, address);
+                hospitals.Add(hospital);
+            }
+            return hospitals;
+        }
+        catch (Exception)
+        {
+            return hospitals;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
+    public static List<Doctor> GetDoctorsForHospital(string hospitalId)
+    {
+        List<Doctor> doctors = new List<Doctor>();
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = "select id, name, surname from doctor " +
+                "where hospital_id=@id and is_gp=1";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            command.Parameters.AddWithValue("@id", hospitalId);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                string id = reader["id"].ToString();
+                string name = reader["name"].ToString();
+                string surname = reader["surname"].ToString();
+                Doctor doctor = new Doctor { Id = id, Name = name, Surname = surname };
+                doctors.Add(doctor);
+            }
+            return doctors;
+        }
+        catch (Exception ex)
+        {
+            return doctors;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
     public static HospitalsResponseWrapper GetAllHospitals()
     {
         List<ListItem> hospitals = new List<ListItem>();

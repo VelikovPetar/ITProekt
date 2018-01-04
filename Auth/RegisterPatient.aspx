@@ -1,10 +1,50 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RegisterPatient.aspx.cs" Inherits="Auth_RegisterPatient" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RegisterPatient.aspx.cs" Inherits="Auth_RegisterPatient" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <script src="../Scripts/jquery-3.2.1.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function getGpsForHospital(hospitalId) {
+            $.getJSON("/api/services/GetDoctorsForHospital?hospitalId=" + hospitalId,
+                function (data) {
+                    console.log(data);
+                    $('#ddlGeneralPractioner').find('option').remove();
+                    if (data.length == 0) {
+                        var option = '<option value="-----">-----</option>';
+                        $('#ddlGeneralPractioner').append(option);
+                    } else {
+                        $.each(data, function (key, value) {
+                            var id = value.Id;
+                            var name = value.Name;
+                            var surname = value.Surname;
+                            var option = '<option value=' + id + '>' + "Dr. " + name + " " + surname + '</option>';
+                            $('#ddlGeneralPractioner').append(option);
+                        });
+                    }
+                });
+        }
+
+        function saveHospitalToHiddenField() {
+            var id = $('#ddlGeneralPractioner').find(':selected').val();
+            var name = $('#ddlGeneralPractioner').find(':selected').text();
+            $('#hiddenFieldDoctorId').val(id);
+            $('#hiddenFieldDoctorName').val(name);
+        }
+
+        $(document).ready(function () {
+            $('#ddlHospital').change(function () {
+                var hospitalId = $('#ddlHospital').find(':selected').val();
+                getGpsForHospital(hospitalId);
+            });
+
+            $('#btnRegister').click(function () {
+                saveHospitalToHiddenField();
+            });
+        });
+    </script>
     <style type="text/css">
         .auto-style1 {
             width: 100%;
@@ -19,6 +59,10 @@
     <form id="form1" runat="server">
         <div>
             <h3>Fill this form to register as a new patient:</h3>
+            <p>
+                <asp:HiddenField ID="hiddenFieldDoctorId" runat="server" />
+                <asp:HiddenField ID="hiddenFieldDoctorName" runat="server" />
+            </p>
             <table class="auto-style1">
                 <tr>
                     <td class="auto-style2">
@@ -99,7 +143,7 @@
                         <asp:Label ID="lblHospital" runat="server" Text="Hospital"></asp:Label>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlHospital" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlHospital_SelectedIndexChanged">
+                        <asp:DropDownList ID="ddlHospital" runat="server">
                         </asp:DropDownList>
                     </td>
                 </tr>
