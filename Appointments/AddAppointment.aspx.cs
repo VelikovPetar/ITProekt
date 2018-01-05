@@ -135,12 +135,8 @@ public partial class Appointments_AddAppointment : System.Web.UI.Page
     private void LoadAvailableTimes(string doctorId, string date)
     {
         List<Appointment> appointments = DBUtils.GetAppointmentsForDoctorOnDate(doctorId, date);
-        List<String> notAvailable = new List<string>();
-        foreach (Appointment app in appointments)
-        {
-            notAvailable.Add(app.Time);
-        }
-        lblInfo.Text = String.Join("--", notAvailable.ToArray());
+        IEnumerable<String> notAvailable = appointments.Select(it => it.Time);
+        //lblInfo.Text = String.Join("--", notAvailable.ToArray());
         DateTime initial = DateTime.ParseExact("08:00:00", "HH:mm:ss", CultureInfo.InvariantCulture);
         ddlTime.Items.Clear();
         for (int i = 0; i < 24; ++i)
