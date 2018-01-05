@@ -301,6 +301,52 @@ public class DBUtils
         }
     }
 
+    public static List<Appointment> GetAppointmentsForDoctorOnDate(string doctorId, string date)
+    {
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = @"select * from appointment where doctor_id=@doctorId and date_time like @date;";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            command.Parameters.AddWithValue("@doctorId", doctorId);
+            command.Parameters.AddWithValue("@date", "%" + date + "%");
+            MySqlDataReader reader = command.ExecuteReader();
+            System.Diagnostics.Debug.WriteLine(command.CommandText);
+            System.Diagnostics.Debug.WriteLine("Id = " + doctorId);
+            System.Diagnostics.Debug.WriteLine("Date = " + date );
+            List<Appointment> appointments = new List<Appointment>();
+            while (reader.Read())
+            {
+                string id = reader["id"].ToString();
+                string date_time = reader["date_time"].ToString();
+                string has_report = reader["has_report"].ToString();
+                string patient_id = reader["patient_id"].ToString();
+                string doctor_id = reader["doctor_id"].ToString();
+                Appointment app = new Appointment
+                {
+                    Id = id,
+                    DateTime = date_time,
+                    HasReport = has_report == "1",
+                    PatientId = patient_id,
+                    DoctorId = doctor_id
+                };
+                appointments.Add(app);
+            }
+            return appointments;
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine(ex.ToString());
+            return null;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
     public static Appointment GetAppointmentById(string id)
     {
         string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
@@ -335,6 +381,40 @@ public class DBUtils
         catch (Exception)
         {
             return null;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
+    public static bool AttemptSaveAppointment(string patientId, string doctorId, string dateTime, string hasReport = "0")
+    {
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = "insert into appointment(patient_id, doctor_id, date_time, has_report) " +
+                "values(@patientId, @doctorId, @dateTime, @hasReport)";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            command.Parameters.AddWithValue("@patientId", patientId);
+            command.Parameters.AddWithValue("@doctorId", doctorId);
+            command.Parameters.AddWithValue("@dateTime", dateTime);
+            command.Parameters.AddWithValue("@hasReport", hasReport);
+            int rows = command.ExecuteNonQuery();
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (Exception)
+        {
+            return true;
         }
         finally
         {
@@ -509,4 +589,5 @@ public class DBUtils
             con.Close();
         }
     }
+
 }

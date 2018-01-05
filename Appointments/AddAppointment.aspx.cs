@@ -5,9 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Data;
 using System.Web.UI.WebControls;
+using System.Globalization;
 
 public partial class Appointments_AddAppointment : System.Web.UI.Page
 {
+
+    private const string MSG_ERROR_MAKING_APPOINTMENT = "[An error occurred while saving the appointment!]";
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsUserLoggedIn())
@@ -19,6 +23,7 @@ public partial class Appointments_AddAppointment : System.Web.UI.Page
         }
         if (!IsGeneralPractionerLoggedIn())
         {
+            // Redirect to error page
             Response.Redirect("~/ErrorPages/NotAuthorized.aspx", false);
             Context.ApplicationInstance.CompleteRequest();
             return;
@@ -26,8 +31,8 @@ public partial class Appointments_AddAppointment : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             LoadPatients();
-            LoadHospitals();
             LoadDates();
+            LoadHospitals();
         }
     }
 
@@ -64,6 +69,10 @@ public partial class Appointments_AddAppointment : System.Web.UI.Page
         {
             LoadSpecialistsForHospital(ddlHospital.Items[0].Value.ToString());
         }
+        if (ddlDoctor.Items.Count > 0 && ddlDate.Items.Count > 0)
+        {
+            LoadAvailableTimes(ddlDoctor.SelectedValue.ToString(), ddlDate.SelectedValue.ToString());
+        }
     }
 
     private void LoadDates()
@@ -81,6 +90,10 @@ public partial class Appointments_AddAppointment : System.Web.UI.Page
     {
         string hospitalId = ddlHospital.SelectedValue.ToString();
         LoadSpecialistsForHospital(hospitalId);
+        if (ddlDoctor.Items.Count > 0 && ddlDate.Items.Count > 0)
+        {
+            LoadAvailableTimes(ddlDoctor.SelectedValue.ToString(), ddlDate.SelectedValue.ToString());
+        }
     }
 
     private void LoadSpecialistsForHospital(string hospitalId)
@@ -103,5 +116,66 @@ public partial class Appointments_AddAppointment : System.Web.UI.Page
             dates[i] = date.ToString("yyyy-MM-dd");
         }
         return dates;
+    }
+
+    protected void ddlDoctor_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        string doctorId = ddlDoctor.SelectedValue.ToString();
+        string date = ddlDate.SelectedValue.ToString();
+        LoadAvailableTimes(doctorId, date);
+    }
+
+    protected void ddlDate_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        string doctorId = ddlDoctor.SelectedValue.ToString();
+        string date = ddlDate.SelectedValue.ToString();
+        LoadAvailableTimes(doctorId, date);
+    }
+
+    private void LoadAvailableTimes(string doctorId, string date)
+    {
+        List<Appointment> appointments = DBUtils.GetAppointmentsForDoctorOnDate(doctorId, date);
+        List<String> notAvailable = new List<string>();
+        foreach (Appointment app in appointments)
+        {
+            notAvailable.Add(app.Time);
+        }
+        lblInfo.Text = String.Join("--", notAvailable.ToArray());
+        DateTime initial = DateTime.ParseExact("08:00:00", "HH:mm:ss", CultureInfo.InvariantCulture);
+        ddlTime.Items.Clear();
+        for (int i = 0; i < 24; ++i)
+        {
+            string stringRep = initial.ToString("HH:mm:ss");
+            if (!notAvailable.Contains(stringRep))
+            {
+                ddlTime.Items.Add(new ListItem { Value = stringRep, Text = stringRep });
+            }
+            initial = initial.AddMinutes(20);
+        }
+    }
+
+    protected void btnMakeAppointment_Click(object sender, EventArgs e)
+    {
+        AttemptMakeAppointment();
+    }
+
+    private void AttemptMakeAppointment()
+    {
+        string patientId = ddlPatient.SelectedValue.ToString();
+        string doctorId = ddlDoctor.SelectedValue.ToString();
+        string date = ddlDate.SelectedValue.ToString();
+        string time = ddlTime.SelectedValue.ToString();
+        string dateTime = date + " " + time;
+        bool success = DBUtils.AttemptSaveAppointment(patientId, doctorId, dateTime);
+        if (success)
+        {
+            lblInfo.Text = "Success";
+            lblInfo.ForeColor = System.Drawing.Color.Black;
+        }
+        else
+        {
+            lblInfo.Text = MSG_ERROR_MAKING_APPOINTMENT;
+            lblInfo.ForeColor = System.Drawing.Color.DarkRed;
+        }
     }
 }

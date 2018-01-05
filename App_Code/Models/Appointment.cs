@@ -5,16 +5,16 @@ using System.Web;
 
 public class Appointment
 {
-    public string Id { get; private set; }
-    public string PatientId { get; private set; }
+    public string Id { get; set; }
+    public string PatientId { get; set; }
     public string PatientName { get; private set; }
     public string PatientSurname { get; private set; }
     public string PatientSsn { get; private set; }
-    public string DoctorId { get; private set; }
+    public string DoctorId { get; set; }
     public string DoctorName { get; private set; }
     public string DoctorSurname { get; private set; }
-    private string DateTime;
-    public bool HasReport { get; private set; }
+    public string DateTime { get; set; }
+    public bool HasReport { get; set; }
     public string Date
     {
         get { return DateTime.Split(' ')[0]; }
@@ -22,6 +22,11 @@ public class Appointment
     public string Time
     {
         get { return DateTime.Split(' ')[1]; }
+    }
+
+    public Appointment()
+    {
+
     }
 
     public Appointment(string id, string patientId, string patientName, string patientSurname, string patientSsn, 
