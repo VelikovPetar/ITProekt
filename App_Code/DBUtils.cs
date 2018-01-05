@@ -313,9 +313,6 @@ public class DBUtils
             command.Parameters.AddWithValue("@doctorId", doctorId);
             command.Parameters.AddWithValue("@date", "%" + date + "%");
             MySqlDataReader reader = command.ExecuteReader();
-            System.Diagnostics.Debug.WriteLine(command.CommandText);
-            System.Diagnostics.Debug.WriteLine("Id = " + doctorId);
-            System.Diagnostics.Debug.WriteLine("Date = " + date );
             List<Appointment> appointments = new List<Appointment>();
             while (reader.Read())
             {
@@ -338,7 +335,6 @@ public class DBUtils
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine(ex.ToString());
             return null;
         }
         finally
