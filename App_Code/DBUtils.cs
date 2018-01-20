@@ -452,6 +452,31 @@ public class DBUtils
         }
     }
 
+    public static bool AttemptSaveReport(string diagnosis, string therapy, string remark, string appId)
+    {
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = "insert into report(diagnosis, therapy, remark, appointment_id) " +
+                "values(@diagnosis, @therapy, @remark, @appId)";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            command.Parameters.AddWithValue("@diagnosis", diagnosis);
+            command.Parameters.AddWithValue("@therapy", therapy);
+            command.Parameters.AddWithValue("@remark", remark);
+            command.Parameters.AddWithValue("@appId", appId);
+            int rows = command.ExecuteNonQuery();
+            return rows > 0;
+        } catch (Exception)
+        {
+            return false;
+        } finally
+        {
+            con.Close();
+        }
+    }
+
     public static bool UpdateReport(string id, string diagnosis, string therapy, string remark)
     {
         string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
@@ -585,5 +610,4 @@ public class DBUtils
             con.Close();
         }
     }
-
 }
