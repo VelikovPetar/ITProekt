@@ -67,7 +67,7 @@
                                         <asp:Label ID="Label1" runat="server" Text="Name:"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:Label ID="lblName" runat="server"></asp:Label>
+                                        <asp:Label ID="lblName" runat="server" Font-Bold="True"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -75,7 +75,7 @@
                                         <asp:Label ID="Label2" runat="server" Text="Surname:"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:Label ID="lblSurname" runat="server"></asp:Label>
+                                        <asp:Label ID="lblSurname" runat="server" Font-Bold="True"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -83,7 +83,7 @@
                                         <asp:Label ID="Label3" runat="server" Text="Email:"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:Label ID="lblEmail" runat="server"></asp:Label>
+                                        <asp:Label ID="lblEmail" runat="server" Font-Bold="True"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -91,7 +91,7 @@
                                         <asp:Label ID="Label4" runat="server" Text="Hospital:"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:Label ID="lblHospital" runat="server"></asp:Label>
+                                        <asp:Label ID="lblHospital" runat="server" Font-Bold="True"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -99,7 +99,7 @@
                                         <asp:Label ID="Label5" runat="server" Text="Doctor type:"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:Label ID="lblDoctorType" runat="server"></asp:Label>
+                                        <asp:Label ID="lblDoctorType" runat="server" Font-Bold="True"></asp:Label>
                                     </td>
                                 </tr>
                             </table>
