@@ -274,6 +274,33 @@ public class DBUtils
         }
     }
 
+    public static DataSet GetAppointmentsForSpecialist(string doctorId, bool upcoming)
+    {
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = "select app.id, date_time, has_report, ssn, concat(name, ' ', surname) as full_name " +
+                "from appointment as app inner join patient on app.patient_id=patient.id " +
+                "where app.doctor_id=@doctorId and app.date_time" + (upcoming ? ">" : "<") + "now()";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            command.Parameters.AddWithValue("@doctorId", doctorId);
+            DataSet dataSet = new DataSet();
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            adapter.Fill(dataSet, "appointments");
+            return dataSet;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
     public static DataSet GetAppointmentsForDoctor(string doctorId)
     {
         string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
@@ -468,10 +495,12 @@ public class DBUtils
             command.Parameters.AddWithValue("@appId", appId);
             int rows = command.ExecuteNonQuery();
             return rows > 0;
-        } catch (Exception)
+        }
+        catch (Exception)
         {
             return false;
-        } finally
+        }
+        finally
         {
             con.Close();
         }
@@ -600,6 +629,36 @@ public class DBUtils
             DataSet ds = new DataSet();
             adapter.Fill(ds, "patients");
             return ds;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
+    public static DataSet GetPatientsForSpecialist(string specialistId)
+    {
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = "select id, concat(name, ' ', surname) as full_name, ssn, email, date_of_birth " +
+                "from patient " +
+                "where patient.id in " +
+                "(select distinct(patient_id) " +
+                "from appointment " +
+                "where appointment.doctor_id=@specialistId)";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            command.Parameters.AddWithValue("@specialistId", specialistId);
+            DataSet dataSet = new DataSet();
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            adapter.Fill(dataSet, "patients");
+            return dataSet;
         }
         catch (Exception)
         {
