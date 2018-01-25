@@ -39,7 +39,6 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <h4>Displaying details about appointment with Id:<asp:Label ID="lblAppId" runat="server"></asp:Label></h4>
             <table class="auto-style1">
                 <tr>
                     <td class="auto-style2">
@@ -47,6 +46,9 @@
                     </td>
                     <td>
                         <asp:Label ID="lblPatientName" runat="server"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:Button ID="btnPatientDetails" runat="server" OnClick="btnPatientDetails_Click" Text="Patient details" />
                     </td>
                 </tr>
                 <tr>
@@ -56,6 +58,8 @@
                     <td>
                         <asp:Label ID="lblPatientSurname" runat="server"></asp:Label>
                     </td>
+                    <td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
@@ -64,6 +68,8 @@
                     <td>
                         <asp:Label ID="lblPatientSsn" runat="server"></asp:Label>
                     </td>
+                    <td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
@@ -72,6 +78,8 @@
                     <td>
                         <asp:Label ID="lblDoctorName" runat="server"></asp:Label>
                     </td>
+                    <td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
@@ -80,6 +88,8 @@
                     <td>
                         <asp:Label ID="lblDoctorSurname" runat="server"></asp:Label>
                     </td>
+                    <td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
@@ -88,6 +98,8 @@
                     <td>
                         <asp:Label ID="lblDate" runat="server"></asp:Label>
                     </td>
+                    <td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
@@ -96,6 +108,8 @@
                     <td>
                         <asp:Label ID="lblTime" runat="server"></asp:Label>
                     </td>
+                    <td>
+                        &nbsp;</td>
                 </tr>
             </table>
             <h4>

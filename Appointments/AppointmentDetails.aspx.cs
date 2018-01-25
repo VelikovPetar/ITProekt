@@ -35,7 +35,6 @@ public partial class Appointments_AppointmentDetails : System.Web.UI.Page
             else
             {
                 ViewState["app_id"] = appId; // Store the appointment id in case the user modifies the query string!
-                lblAppId.Text = appId;
                 Appointment app = DBUtils.GetAppointmentById(appId);
                 if (app == null)
                 {
@@ -50,6 +49,7 @@ public partial class Appointments_AppointmentDetails : System.Web.UI.Page
                     return;
                 }
                 DisplayAppointment(app);
+                ViewState["patient_id"] = app.PatientId;
                 if (app.HasReport)
                 {
                     Report report = DBUtils.GetReportForAppointmentId(app.Id);
@@ -134,6 +134,14 @@ public partial class Appointments_AppointmentDetails : System.Web.UI.Page
         lblDoctorSurname.Text = app.DoctorSurname;
         lblDate.Text = app.Date;
         lblTime.Text = app.Time;
+        if (IsDoctorLoggedIn())
+        {
+            btnPatientDetails.Visible = true;
+        } 
+        else
+        {
+            btnPatientDetails.Visible = false;
+        }
     }
 
     private void DisplayReport(Report report)
@@ -202,5 +210,11 @@ public partial class Appointments_AppointmentDetails : System.Web.UI.Page
             lblReportInfo.Text = MSG_ERROR_DELETE_REPORT;
             lblReportInfo.ForeColor = System.Drawing.Color.DarkRed;
         }
+    }
+
+    protected void btnPatientDetails_Click(object sender, EventArgs e)
+    {
+        string patientId = (string)ViewState["patient_id"];
+        Response.Redirect("~/Home/PatientDetails.aspx?patientId=" + Server.UrlEncode(patientId));
     }
 }
