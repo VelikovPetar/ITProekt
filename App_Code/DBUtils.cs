@@ -212,6 +212,31 @@ public class DBUtils
         }
     }
 
+    public static bool UpdatePatientGp(string patientId, string doctorId)
+    {
+        string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
+        MySqlConnection con = new MySqlConnection(cString);
+        try
+        {
+            con.Open();
+            string sql = "update patient set doctor_id=@doctorId " +
+                "where id=@patientId";
+            MySqlCommand command = new MySqlCommand(sql, con);
+            command.Parameters.AddWithValue("@doctorId", doctorId);
+            command.Parameters.AddWithValue("@patientId", patientId);
+            int rows = command.ExecuteNonQuery();
+            return rows > 0;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
     public static Doctor FindDoctorById(string id)
     {
         string cString = ConfigurationManager.ConnectionStrings["ezdravstvoDb"].ConnectionString;
