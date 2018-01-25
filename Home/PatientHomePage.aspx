@@ -124,7 +124,7 @@
                                     </tr>
                                     <tr>
                                         <td class="auto-style5">
-                                            <asp:Label ID="Label7" runat="server" Text="General practioner:"></asp:Label>
+                                            <asp:Label ID="Label7" runat="server" Text="General practitioner:"></asp:Label>
                                         </td>
                                         <td>
                                             <asp:Label ID="lblDoctor" runat="server" Font-Bold="true"></asp:Label>

@@ -139,7 +139,7 @@ public partial class Home_PatientDefaultPage : System.Web.UI.Page
         lblAddress.Text = patient.Address;
         lblEmail.Text = patient.Email;
         lblDateOfBirth.Text = patient.DateOfBirth;
-        lblDoctor.Text = doctor == null ? "<i>No general practioner</i>" : "Dr. " + doctor.Name + " " + doctor.Surname;
+        lblDoctor.Text = doctor == null ? "<i>No general practitioner</i>" : "Dr. " + doctor.Name + " " + doctor.Surname;
     }
 
     private bool IsPatientLoggedId()
