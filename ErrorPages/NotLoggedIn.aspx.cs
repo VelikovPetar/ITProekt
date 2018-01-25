@@ -11,4 +11,9 @@ public partial class ErrorPages_NotLoggedIn : System.Web.UI.Page
     {
 
     }
+
+    protected void btnLogin_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Auth/LoginPage.aspx");
+    }
 }

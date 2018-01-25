@@ -10,6 +10,9 @@
     <form id="form1" runat="server">
     <div>
         <h1>You have to be logged in to access this page!</h1>
+        <p>
+            <asp:Button ID="btnLogin" runat="server" OnClick="btnLogin_Click" Text="Login" />
+        </p>
     </div>
     </form>
 </body>
