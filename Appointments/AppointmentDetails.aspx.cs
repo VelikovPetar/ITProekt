@@ -34,7 +34,7 @@ public partial class Appointments_AppointmentDetails : System.Web.UI.Page
             }
             else
             {
-                ViewState["appId"] = appId; // Store the appointment id in case the user modifies the query string!
+                ViewState["app_id"] = appId; // Store the appointment id in case the user modifies the query string!
                 lblAppId.Text = appId;
                 Appointment app = DBUtils.GetAppointmentById(appId);
                 if (app == null)
@@ -165,7 +165,7 @@ public partial class Appointments_AppointmentDetails : System.Web.UI.Page
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        string appId = (string)ViewState["appId"];
+        string appId = (string)ViewState["app_id"];
         Response.Redirect("~/Appointments/AddReport.aspx?appId=" + appId, false);
         Context.ApplicationInstance.CompleteRequest();
     }
