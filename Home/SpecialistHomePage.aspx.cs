@@ -209,6 +209,7 @@ public partial class Home_SpecialistDefaultPage : System.Web.UI.Page
 
     protected void gvAllPatients_SelectedIndexChanged(object sender, EventArgs e)
     {
-        // TODO Redirect to patient details page
+        string id = gvAllPatients.SelectedDataKey.Value.ToString();
+        Response.Redirect("~/Home/PatientDetails.aspx?patientId=" + Server.UrlEncode(id));
     }
 }

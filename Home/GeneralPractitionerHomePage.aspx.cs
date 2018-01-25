@@ -175,7 +175,8 @@ public partial class Home_GeneralPractionerDefaultPage : System.Web.UI.Page
 
     protected void gvGpPatients_SelectedIndexChanged(object sender, EventArgs e)
     {
-        // TODO Redirect to patient details page
+        string id = gvGpPatients.SelectedDataKey.Value.ToString();
+        Response.Redirect("~/Home/PatientDetails.aspx?patientId=" + Server.UrlEncode(id));
     }
 
     protected void gvPatientWithoutGp_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -189,7 +190,8 @@ public partial class Home_GeneralPractionerDefaultPage : System.Web.UI.Page
 
     protected void gvPatientWithoutGp_SelectedIndexChanged(object sender, EventArgs e)
     {
-        // TODO Redirect to patient details page
+        string id = gvPatientWithoutGp.SelectedDataKey.Value.ToString();
+        Response.Redirect("~/Home/PatientDetails.aspx?patientId=" + Server.UrlEncode(id));
     }
 
     protected void gvAllAppointments_PageIndexChanging(object sender, GridViewPageEventArgs e)
