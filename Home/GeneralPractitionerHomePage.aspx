@@ -136,7 +136,7 @@
                             <h4>All appointments<asp:Label ID="lblAllAppointmentsInfo" runat="server" ForeColor="#CC0000"></asp:Label>
                             </h4>
                             <p>
-                                <asp:Button ID="btnNewAppointment" runat="server" Text="Enter new appointment" />
+                                <asp:Button ID="btnNewAppointment" runat="server" Text="Enter new appointment" OnClick="btnNewAppointment_Click" />
                             </p>
                             <p>
                                 <asp:GridView ID="gvAllAppointments" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="id" OnPageIndexChanging="gvAllAppointments_PageIndexChanging" OnSelectedIndexChanged="gvAllAppointments_SelectedIndexChanged" PageSize="5">

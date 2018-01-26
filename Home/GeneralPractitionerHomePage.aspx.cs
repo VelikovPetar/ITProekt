@@ -213,4 +213,9 @@ public partial class Home_GeneralPractionerDefaultPage : System.Web.UI.Page
     {
         Response.Redirect("~/Appointments/AddAppointment.aspx");
     }
+
+    protected void btnNewAppointment_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Appointments/RegisterGpAppointment.aspx");
+    }
 }
