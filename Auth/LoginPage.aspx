@@ -216,6 +216,7 @@ $(document).ready(function(){
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:Label ID="lblInfo" runat="server"></asp:Label>
     <section id="login">
     <div class="container">
     	<div class="row">
@@ -255,51 +256,51 @@ $(document).ready(function(){
                             <asp:HiddenField ID="hiddenFieldDoctorName" runat="server" />
                             
                             <asp:Label ID="lblName" for="name" class="sr-only" runat="server" Text="Name"></asp:Label>
-                            <asp:TextBox ID="txtName"  type="text" name="name" class="form-control" placeholder="Име" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtName" Display="None" ErrorMessage="You must enter your name!"></asp:RequiredFieldValidator>
+                            <asp:TextBox ID="txtNamePatient"  type="text" name="name" class="form-control" placeholder="Име" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtNamePatient" Display="None" ErrorMessage="You must enter your name!"></asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group">
                             <asp:Label ID="lblSurname" for="surname" class="sr-only" runat="server" Text="Surname"></asp:Label>
-                            <asp:TextBox ID="txtSurname" type="text" name="surname" class="form-control" placeholder="Презиме" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtSurname" Display="None" ErrorMessage="You must enter your surname!"></asp:RequiredFieldValidator>
+                            <asp:TextBox ID="txtSurnamePatient" type="text" name="surname" class="form-control" placeholder="Презиме" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtSurnamePatient" Display="None" ErrorMessage="You must enter your surname!"></asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group">
                             <asp:Label ID="lblEmail2" for="email" class="sr-only" runat="server" Text="Email"></asp:Label>
-                            <asp:TextBox ID="txtEmail2" type="email" name="email" class="form-control" placeholder="Е-маил" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtEmail" Display="None" ErrorMessage="You must enter your email!"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtEmail2" Display="None" ErrorMessage="You must enter a valid email!" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                            <asp:TextBox ID="txtEmailPatient" type="email" name="email" class="form-control" placeholder="Е-маил" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtEmailPatient" Display="None" ErrorMessage="You must enter your email!"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtEmailPatient" Display="None" ErrorMessage="You must enter a valid email!" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                         </div>
                         <div class="form-group">
                             <asp:Label ID="lblDateOfBirth" for="dateOfBirth" class="sr-only" runat="server" Text="Date of birth"></asp:Label>
-                            <asp:TextBox ID="txtDateOfBirth" name="DoB" class="form-control" placeholder="Датум на раѓање" runat="server" TextMode="Date"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtDateOfBirth" Display="None" ErrorMessage="You must enter your date of birth!"></asp:RequiredFieldValidator>
+                            <asp:TextBox ID="txtDateOfBirthPatient" name="DoB" class="form-control" placeholder="Датум на раѓање" runat="server" TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtDateOfBirthPatient" Display="None" ErrorMessage="You must enter your date of birth!"></asp:RequiredFieldValidator>
                     
                         </div>
                         <div class="form-group">
                             <asp:Label ID="lblSsn" for="ssn" class="sr-only" runat="server" Text="SSN"></asp:Label>
-                            <asp:TextBox ID="txtSsn" name="ssn" class="form-control" placeholder="Матичен број" runat="server" TextMode="Number"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtSsn" Display="None" ErrorMessage="You must enter your SSN!"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtSsn" Display="None" ErrorMessage="You must enter a valid Ssn(13 digits)!" ValidationExpression="^[0-9]{13}$"></asp:RegularExpressionValidator>
+                            <asp:TextBox ID="txtSsnPatient" name="ssn" class="form-control" placeholder="Матичен број" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtSsnPatient" Display="None" ErrorMessage="You must enter your SSN!"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtSsnPatient" Display="None" ErrorMessage="You must enter a valid Ssn(13 digits)!" ValidationExpression="^[0-9]{13}$"></asp:RegularExpressionValidator>
                         </div>
                         <div class="form-group">
                             <asp:Label ID="lblPhoneNumber" class="sr-only" runat="server" Text="Phone number"></asp:Label>
-                            <asp:TextBox ID="txtPhoneNumber" runat="server" class="form-control" placeholder="Телефонски број"></asp:TextBox>
+                            <asp:TextBox ID="txtPhoneNumberPatient" runat="server" class="form-control" placeholder="Телефонски број"></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <asp:Label ID="lblPassword2" for="key" class="sr-only" runat="server" Text="Password"></asp:Label>
-                            <asp:TextBox ID="txtPassword2" name="key" runat="server" class="form-control" placeholder="Лозинка" TextMode="Password"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtPassword2" Display="None" ErrorMessage="You must enter a password!"></asp:RequiredFieldValidator>
+                            <asp:TextBox ID="txtPasswordPatient" name="key" runat="server" class="form-control" placeholder="Лозинка" TextMode="Password"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtPasswordPatient" Display="None" ErrorMessage="You must enter a password!"></asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group">
                             <asp:Label ID="lblConfirmPassword" for="key" class="sr-only" runat="server" Text="Confirm password"></asp:Label>
-                            <asp:TextBox ID="txtConfirmPassword" class="form-control" placeholder="Потврди лозинка" runat="server" TextMode="Password"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtConfirmPassword" Display="None" ErrorMessage="You must confirm your password!"></asp:RequiredFieldValidator>
-                            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPassword2" ControlToValidate="txtConfirmPassword" Display="None" ErrorMessage="Passwords must match!"></asp:CompareValidator>
+                            <asp:TextBox ID="txtConfirmPasswordPatient" class="form-control" placeholder="Потврди лозинка" runat="server" TextMode="Password"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtConfirmPasswordPatient" Display="None" ErrorMessage="You must confirm your password!"></asp:RequiredFieldValidator>
+                            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPasswordPatient" ControlToValidate="txtConfirmPasswordPatient" Display="None" ErrorMessage="Passwords must match!"></asp:CompareValidator>
                     
                         </div>
                         <div class="form-group">
                             <asp:Label ID="lblHospital" runat="server" Text="Болница"></asp:Label>
-                            <asp:DropDownList ID="ddlHospital" runat="server">
+                            <asp:DropDownList ID="ddlHospitalPatient" runat="server">
                             </asp:DropDownList>
                         </div>
                         <div class="form-group">                                    
@@ -325,25 +326,25 @@ $(document).ready(function(){
                     <form role="form" action="javascript:;" method="post" id="login-form" autocomplete="off">
                         <div class="form-group">
                             <asp:Label ID="lblName2" for="name" class="sr-only" runat="server" Text="Name"></asp:Label>
-                            <asp:TextBox ID="txtName2" name="name" class="form-control" placeholder="Име" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtName2" Display="None" ErrorMessage="You must enter your name!"></asp:RequiredFieldValidator>            
+                            <asp:TextBox ID="txtNameDoctor" name="name" class="form-control" placeholder="Име" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtNameDoctor" Display="None" ErrorMessage="You must enter your name!"></asp:RequiredFieldValidator>            
                         </div>
                         <div class="form-group">
                             <asp:Label ID="lblSurname2" for="surname" class="sr-only" runat="server" Text="Surname"></asp:Label>
-                            <asp:TextBox ID="txtSurname2" name="surname" class="form-control" placeholder="Презиме" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtSurname2" Display="None" ErrorMessage="You must enter your surname!"></asp:RequiredFieldValidator>
+                            <asp:TextBox ID="txtSurnameDoctor" name="surname" class="form-control" placeholder="Презиме" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtSurnameDoctor" Display="None" ErrorMessage="You must enter your surname!"></asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group">
                             <asp:Label ID="lblEmail3" for="email" class="sr-only" runat="server" Text="Email"></asp:Label>
-                            <asp:TextBox ID="txtEmail3" name="email" class="form-control" placeholder="Е-маил" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtEmail" Display="None" ErrorMessage="You must enter your email!"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="txtEmail3" Display="None" ErrorMessage="You must enter a valid email!" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>               
+                            <asp:TextBox ID="txtEmailDoctor" name="email" class="form-control" placeholder="Е-маил" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtEmailDoctor" Display="None" ErrorMessage="You must enter your email!"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="txtEmailDoctor" Display="None" ErrorMessage="You must enter a valid email!" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>               
                         </div>
                         <div class="form-group">
                             <asp:Label ID="lblHospital2" runat="server" Text="Болница"></asp:Label>
-                            <asp:DropDownList ID="ddlHospital2" runat="server">
+                            <asp:DropDownList ID="ddlHospitalDoctor" runat="server">
                             </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="ddlHospital2" Display="None" ErrorMessage="You must select a hospital!"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="ddlHospitalDoctor" Display="None" ErrorMessage="You must select a hospital!"></asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group">
                             <asp:Label ID="lblGeneralPractioner" runat="server" Text="Матичен доктор"></asp:Label>
@@ -351,14 +352,14 @@ $(document).ready(function(){
                         </div>
                         <div class="form-group">
                             <asp:Label ID="lblPassword3" for="key" class="sr-only" runat="server" Text="Password"></asp:Label>
-                            <asp:TextBox ID="txtPassword3" name="key" runat="server" class="form-control" placeholder="Лозинка" TextMode="Password"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="txtPassword3" Display="None" ErrorMessage="You must enter a password!"></asp:RequiredFieldValidator>                
+                            <asp:TextBox ID="txtPasswordDoctor" name="key" runat="server" class="form-control" placeholder="Лозинка" TextMode="Password"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="txtPasswordDoctor" Display="None" ErrorMessage="You must enter a password!"></asp:RequiredFieldValidator>                
                         </div>
                         <div class="form-group">
                             <asp:Label ID="lblConfirmPassword2" runat="server" class="sr-only" Text="Confirm Password"></asp:Label>
-                            <asp:TextBox ID="txtConfirmPassword2" runat="server" class="form-control" placeholder="Потврди лозинка" TextMode="Password"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="txtConfirmPassword" Display="None" ErrorMessage="You must confirm your password!"></asp:RequiredFieldValidator>
-                            <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToCompare="txtPassword3" ControlToValidate="txtConfirmPassword2" Display="None" ErrorMessage="Passwords must match!"></asp:CompareValidator>
+                            <asp:TextBox ID="txtConfirmPasswordDoctor" runat="server" class="form-control" placeholder="Потврди лозинка" TextMode="Password"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="txtConfirmPasswordDoctor" Display="None" ErrorMessage="You must confirm your password!"></asp:RequiredFieldValidator>
+                            <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToCompare="txtPasswordDoctor" ControlToValidate="txtConfirmPasswordDoctor" Display="None" ErrorMessage="Passwords must match!"></asp:CompareValidator>
                         </div>
                         <asp:Button ID="btnRegisterDoctor" class="btn btn-custom btn-lg btn-block" runat="server" Text="Регистрација" OnClick="btnRegisterDoctor_Click" />
                     </form>
@@ -381,7 +382,6 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-    <asp:Label ID="lblInfo" runat="server"></asp:Label>
     <script src="js/jquery.js" type="text/javascript"></script>
 	  <script src="js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
