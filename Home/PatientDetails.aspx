@@ -48,7 +48,6 @@ hr{
 .but4{
   margin-top: -460px;
 }
-
     </style>
 </head>
 <body>
@@ -79,15 +78,12 @@ hr{
 				          		<asp:Label ID="Label7" runat="server" Text="Матичен доктор:"></asp:Label>
                                 <asp:Label ID="lblGeneralPractitioner" runat="server" Font-Bold="True"></asp:Label>
 				          	</div>
-				          	<div class="col-xs-3 col-xs-offset-4">
-                                  <asp:Button ID="btnAssignGp" class="btn btn-md btn-success but3" runat="server" OnClick="btnAssignGp_Click" Text="Додади во свои пациенти" />
+				          	<div class="col-xs-6 col-xs-offset-6">
+								<asp:Button class="btn btn-md btn-success but3" ID="btnAssignGp" runat="server" OnClick="btnAssignGp_Click" Text="Додади во свои пациенти" ></asp:Button>
+								<asp:Button class="btn btn-md btn-danger but3" ID="btnRemoveGp" runat="server" OnClick="btnRemoveGp_Click" Text="Отстрани од свои пациенти"></asp:Button>
+                                 <asp:Button class="btn btn-md btn-info but3" runat="server" Text="Дома" ID="Button1" CausesValidation="false" OnClick="btnHome_Click" ></asp:Button>
+
 							</div>
-							<div class="col-xs-3 col-xs-offset-7">
-                                <asp:Button ID="btnRemoveGp" class="btn btn-md btn-danger but4" runat="server" OnClick="btnRemoveGp_Click" Text="Отстрани од свои пациенти" />
-							</div>
-                            <div class="col-xs-3 col-xs-offset-10">
-                                <asp:Button CssClass="btn btn-info btn4" runat="server" Text="Дома" ID="btnHome" Font-Size="16" CausesValidation="false" OnClick="btnHome_Click" />
-                            </div>
                         </div>
 						<hr id="hr"/>
 						<div class="row">

@@ -166,7 +166,7 @@ public partial class Appointments_AddAppointment : System.Web.UI.Page
         if (success)
         {
             lblInfo.Text = "Success";
-            lblInfo.ForeColor = System.Drawing.Color.Black;
+            lblInfo.ForeColor = System.Drawing.Color.ForestGreen;
         }
         else
         {

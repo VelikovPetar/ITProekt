@@ -234,7 +234,6 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Label ID="lblInfo" runat="server"></asp:Label>
         <section id="login">
             <div class="container">
                 <div class="row">
@@ -255,7 +254,6 @@
                             </div>
                             <asp:Button ID="btnLogin" class="btn btn-custom btn-lg btn-block" runat="server" Text="Најава" OnClick="btnLogin_Click" ValidationGroup="loginGroup" />
                             <asp:ValidationSummary ID="ValidationSummary3" runat="server"  ValidationGroup="loginGroup" ForeColor="#CC0000" />
-                            
                             <%--</form>--%>
                             <hr>
                             <button class="btn btn-danger btn-sm" id="nazad1"><span class="glyphicon glyphicon-chevron-left">&nbsp;Назад</span></button>
@@ -403,6 +401,7 @@
             <!-- /.container -->
             <div class="container">
                 <div class="row">
+                    <asp:Label ID="lblInfo" runat="server" Font-Size="16"></asp:Label>
                     <div class="col-lg-6 col-lg-offset-2 start">
                         <input type="button" class="btn btn-info btn-lg btn-block bt1" id="najava" value="Најавете се" />
                     </div>
