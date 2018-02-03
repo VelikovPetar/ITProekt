@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/start_style.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+    <script src="../Scripts/jquery-3.2.1.js" type="text/javascript"></script>
 	<meta charset="utf-8"/>
 
     <style>
@@ -170,7 +170,7 @@ $(document).ready(function(){
         $("#najava").show(1000);
         $("#registracija").show(1000);
         $("#registracija_dok").show(1000);
-    });
+        });
 });
 
 
@@ -203,8 +203,8 @@ $(document).ready(function(){
 	}
 
 	$(document).ready(function () {
-	    $('#ddlHospital').change(function () {
-	        var hospitalId = $('#ddlHospital').find(':selected').val();
+	    $('#ddlHospitalPatient').change(function () {
+	        var hospitalId = $('#ddlHospitalPatient').find(':selected').val();
 	        getGpsForHospital(hospitalId);
 	    });
 
