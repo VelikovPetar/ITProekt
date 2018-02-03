@@ -55,9 +55,6 @@
             <div class="row">
                 <div class="col-xs-10 col-xs-offset-1">
                     <form class=" form-horizontal"  runat="server"  id="form1">
-                        <div>
-                          <asp:Button CssClass="btn btn-info" runat="server" Text="Дома" ID="btnHome" Font-Size="16" CausesValidation="false" OnClick="btnHome_Click"/>
-                      </div>
                         <div class="pac">
                             <div class="form-group">
                                  <asp:Label ID="Label1" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="Име на пациент:"></asp:Label>
@@ -100,7 +97,7 @@
                             <asp:Label ID="lblReportInfo" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" ForeColor="#CC0000"></asp:Label>
                             </div>
                              <div class=" col-xs-10 col-xs-offset-1 ">
-                             <asp:Button ID="btnPatientDetails" runat="server" OnClick="btnPatientDetails_Click" Font-Size="16" class="btn btn-info btn-lg" Text="Детали на пациент" ValidationGroup="ReportGroup" Font-Italic="False" />
+                             <asp:Button ID="btnPatientDetails" runat="server" OnClick="btnPatientDetails_Click" Font-Size="16" class="btn btn-info btn-lg" Text="Детали на пациент" Font-Italic="False" />
                             </div>
                             
                         </div>
@@ -130,18 +127,20 @@
                             </div>
 
                         </div>
-
+                        <asp:ValidationSummary ID="ValidationSummary" runat="server" ForeColor="#CC0000" />
                    
                     <div class=" col-xs-6  ">
-                        <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" class="btn btn-success  btn-block btn-lg" Font-Size="16" Text="Зачувај" ValidationGroup="ReportGroup" />
+                        <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" class="btn btn-success  btn-block btn-lg" Font-Size="16" Text="Зачувај" />
                     </div>
                     <div class=" col-xs-6  ">
-                        <asp:Button ID="btnDelete" runat="server" class="btn btn-danger  btn-block btn-lg" Font-Size="16" OnClick="btnDelete_Click" Text="Избриши" />
+                        <asp:Button ID="btnDelete" runat="server" class="btn btn-danger  btn-block btn-lg" Font-Size="16" OnClick="btnDelete_Click" Text="Избриши"/>
                     </div>
                     <div class=" col-xs-12 izvb">
                         <asp:Button ID="btnAdd" runat="server" class="btn btn-primary  btn-block btn-lg" Font-Size="16" OnClick="btnAdd_Click" Text="Внеси извештај" />
                     </div>
-
+                    <div class=" col-xs-12 home">
+                            <asp:Button ID="btnHome" runat="server" class="btn btn-info  btn-block btn-lg" Font-Size="16" Text="Дома"  CausesValidation="false" OnClick="btnHome_Click" />
+                        </div>
                  </form>
                 </div>
             </div>

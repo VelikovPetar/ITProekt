@@ -50,9 +50,7 @@
                     <div class="col-xs-10 col-xs-offset-1">
                         <form class=" form-horizontal" runat="server">
                             <asp:Label ID="lblError" runat="server" ForeColor="#CC0000" Font-Size="16"></asp:Label>
-                            <div>
-                          <asp:Button CssClass="btn btn-info" runat="server" Text="Дома" ID="btnHome" Font-Size="16" OnClick="btnHome_Click" CausesValidation="false"/>
-                      </div>
+                           
                             <div class="pac">
                                 <div class="form-group">
                                     <asp:Label ID="Label1" runat="server" class="control-label col-xs-3 lb" Font-Bold="true" Font-Size="16" Text="Пациент:"></asp:Label>
@@ -100,6 +98,9 @@
                         
                         <div class=" col-xs-6  ">
                             <asp:Button ID="btnAddReport" runat="server"  class="btn btn-success  btn-block btn-lg" Font-Size="16" OnClick="btnAddReport_Click" Text="Внеси извештај" />
+                        </div>
+                            <div class=" col-xs-6  ">
+                            <asp:Button ID="btnHome" runat="server"  class="btn btn-info  btn-block btn-lg" Font-Size="16" OnClick="btnHome_Click" Text="Дома" />
                         </div>
                         </form>
                     </div>

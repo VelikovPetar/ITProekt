@@ -56,9 +56,7 @@
                <div class="col-xs-10 col-xs-offset-1">
                   <form class=" form-horizontal" runat="server" id="form1">
                         <asp:Label runat="server" ID="lblInfo" Font-Size="16"/>
-                      <div>
-                          <asp:Button CssClass="btn btn-info" runat="server" Text="Дома" ID="btnHome" Font-Size="16" OnClick="btnHome_Click"/>
-                      </div>
+                     
                         <div class="form-group">
                             <asp:Label ID="Label1" class="control-label col-xs-4" runat="server"  Font-Bold="true" Font-Size="16" Text="Избери пациент:" ></asp:Label>
                             <div class="col-xs-8">
@@ -108,7 +106,10 @@
                              <asp:Button ID="btnMakeAppointment" runat="server" class="btn btn-success btn-block btn-lg" Font-Size="16" Text="Внеси Преглед" OnClick="btnMakeAppointment_Click" />
                          
                         </div>
-                     
+                     <div class=" col-xs-6  ">
+                             <asp:Button ID="btnHome" runat="server" class="btn btn-info btn-block btn-lg" Font-Size="16" Text="Дома" OnClick="btnHome_Click" />
+                         
+                        </div>
                       
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="#CC0000" />
                         </form>
