@@ -1,0 +1,119 @@
+body{
+	height: 1000px;
+	max-width: 100%;
+	background-image: url(img/img4.jpg);
+	background-size: 100% 100%
+}
+.start{
+	text-align: center;
+	padding-top: 450px;
+}
+.bt1{
+	margin-left: 72px;
+	margin-right: 40px;
+	margin-top: -115px;
+}
+.bt2{
+	margin-left: 60px;
+	margin-top: -75px;
+	color: #3399ff;
+}
+#login {
+    padding-top: 50px
+}
+#login .form-wrap{
+    display:none;
+    width: 30%;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#login .form-wrap2{
+    display:none;
+    width: 30%;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#login .form-wrap3{
+    display:none;
+    width: 30%;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#login h1 {
+    color: #3385ff;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+#login .form-group {
+    margin-bottom: 25px;
+}
+#login .checkbox {
+    margin-bottom: 20px;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+#login .checkbox.show:before {
+    content: '\e013';
+    color: #3385ff;
+    font-size: 17px;
+    margin: 1px 0 0 3px;
+    position: absolute;
+    pointer-events: none;
+    font-family: 'Glyphicons Halflings';
+}
+#login .checkbox .character-checkbox {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    display: inline-block;
+}
+#login .checkbox .label {
+    color: #6d6d6d;
+    font-size: 13px;
+    font-weight: normal;
+}
+#login .btn.btn-custom {
+    font-size: 14px;
+	margin-bottom: 20px;
+}
+#login .forget {
+    font-size: 13px;
+	text-align: center;
+	display: block;
+}
+.form-control {
+    color: #212121;
+}
+.btn-custom {
+    color: #fff;
+	background-color: #3385ff;
+}
+.btn-custom:hover,
+.btn-custom:focus {
+    color: #fff;
+}

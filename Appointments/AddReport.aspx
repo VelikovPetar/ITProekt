@@ -4,98 +4,117 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
+    <meta charset="UTF-8"/>
+    <title>Внеси извештај</title>
+    <link rel="stylesheet" href="css/styleRep.css"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+
+            <style>
+        body{
+            background: url('Resources/img7.jpg') no-repeat fixed 100%;
+            background-size: cover ;
+
         }
-        .auto-style2 {
-            width: 133px;
+        .container
+        {
+            margin-top: 50px;
         }
-        .auto-style3 {
-            width: 133px;
-            height: 26px;
+        .pac{
+            margin-left: -100px;
+            font-size: 1.2em;
+            font-style: oblique;
+
         }
-        .auto-style4 {
-            height: 26px;
+        .det{
+            margin-top: 50px;
+            margin-bottom: 50px;
+
+            font-size: 1.5em;
         }
+        hr{
+            margin-bottom: 50px;
+        }
+
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div>
-        <h4>Report:</h4>
-        <table class="auto-style1">
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label1" runat="server" Text="For patient:"></asp:Label>
-                </td>
-                <td>
-                    <asp:Label ID="lblPatientName" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label2" runat="server" Text="Performed by:"></asp:Label>
-                </td>
-                <td>
-                    <asp:Label ID="lblDoctorName" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style3">
-                    <asp:Label ID="Label3" runat="server" Text="Held on:"></asp:Label>
-                </td>
-                <td class="auto-style4">
-                    <asp:Label ID="lblDateTime" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label4" runat="server" Text="Diagnosis:"></asp:Label>
-                </td>
-                <td>
-                    <asp:TextBox ID="txtDiagnosis" runat="server" Height="48px" TextMode="MultiLine" Width="344px"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtDiagnosis" Display="None" ErrorMessage="Diagnosis field cannot be empty!"></asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label5" runat="server" Text="Therapy:"></asp:Label>
-                </td>
-                <td>
-                    <asp:TextBox ID="txtTherapy" runat="server" Height="48px" TextMode="MultiLine" Width="344px"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTherapy" Display="None" ErrorMessage="Therapy field cannot be empty!"></asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label6" runat="server" Text="Remark:"></asp:Label>
-                </td>
-                <td>
-                    <asp:TextBox ID="txtRemark" runat="server" Height="96px" TextMode="MultiLine" Width="344px"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="#CC0000" />
-                    <br />
-                    <asp:Label ID="lblError" runat="server" ForeColor="#CC0000"></asp:Label>
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Button ID="btnAddReport" runat="server" OnClick="btnAddReport_Click" Text="Add report" />
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
+       <div class="container col-xs-6 col-xs-offset-1">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 style="padding-left:2em">Извештај</h2>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <form class=" form-horizontal" runat="server">
+                            <asp:Label ID="lblError" runat="server" ForeColor="#CC0000" Font-Size="16"></asp:Label>
+                            <div>
+                          <asp:Button CssClass="btn btn-info" runat="server" Text="Дома" ID="btnHome" Font-Size="16" OnClick="btnHome_Click" CausesValidation="false"/>
+                      </div>
+                            <div class="pac">
+                                <div class="form-group">
+                                    <asp:Label ID="Label1" runat="server" class="control-label col-xs-3 lb" Font-Bold="true" Font-Size="16" Text="Пациент:"></asp:Label>
+                                    <asp:Label ID="lblPatientName" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" runat="server"></asp:Label>
+                                </div>
+
+                                <div class="form-group">
+                                    <asp:Label ID="Label2" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="Доктор:"></asp:Label>
+                                    <asp:Label ID="lblDoctorName"  class="control-label col-xs-3" Font-Bold="true" Font-Size="16" runat="server"></asp:Label>
+                                </div>
+
+                                <div class="form-group">
+                                    <asp:Label ID="Label3" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="Датум:"></asp:Label>
+                                    <asp:Label ID="lblDateTime"  class="control-label col-xs-3" Font-Bold="true" Font-Size="16" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="det">
+                            <div class="form-group">
+                                <asp:Label ID="Label4" runat="server"  class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="Дијагноза:"></asp:Label>
+                                <div class="col-xs-8">
+                                     <asp:TextBox ID="txtDiagnosis" runat="server" Rows="4" Height="100px" TextMode="MultiLine" CssClass="TextBox" Width="90%"></asp:TextBox>
+                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtDiagnosis" Display="None" ErrorMessage="Diagnosis field cannot be empty!"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <asp:Label ID="Label5" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="Терапија:"></asp:Label>
+                                <div class="col-xs-8">
+                                    <asp:TextBox ID="txtTherapy" runat="server" Rows="4" Height="100px" TextMode="MultiLine" CssClass="TextBox" Width="90%"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTherapy" Display="None" ErrorMessage="Therapy field cannot be empty!"></asp:RequiredFieldValidator>
+                                 </div>
+                            </div>
+
+                            <div class="form-group">
+                                <asp:Label ID="Label6" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="Забелешка:"></asp:Label>
+                                <div class="col-xs-8">
+                                    <asp:TextBox ID="txtRemark" runat="server" Rows="6" Height="130px" TextMode="MultiLine" CssClass="TextBox" Width="90%"></asp:TextBox>
+                                </div>
+                            </div>
+                            </div>
+
+                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="#CC0000" />
+                            <br />
+                        
+                        <div class=" col-xs-6  ">
+                            <asp:Button ID="btnAddReport" runat="server"  class="btn btn-success  btn-block btn-lg" Font-Size="16" OnClick="btnAddReport_Click" Text="Внеси извештај" />
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
+                <hr>
+            </div>
+        </div>
     </div>
-    </form>
+
+
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
 </body>
 </html>

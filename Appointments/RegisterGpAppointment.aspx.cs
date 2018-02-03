@@ -66,4 +66,19 @@ public partial class Appointments_RegisterGpAppointment : System.Web.UI.Page
             lblInfo.ForeColor = System.Drawing.Color.DarkRed;
         }
     }
+
+    protected void btnHome_Click(object sender, EventArgs e)
+    {
+        UserType userType = (UserType)Session["user_type"];
+        if (userType == UserType.DOCTOR_GP)
+        {
+            Response.Redirect("~/Home/GeneralPractitionerHomePage.aspx");
+            return;
+        }
+        if (userType == UserType.DOCTOR_SPECIALIST)
+        {
+            Response.Redirect("~/Home/SpecialistHomePage.aspx");
+            return;
+        }
+    }
 }

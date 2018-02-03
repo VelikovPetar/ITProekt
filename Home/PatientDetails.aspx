@@ -85,7 +85,10 @@ hr{
 							<div class="col-xs-3 col-xs-offset-7">
                                 <asp:Button ID="btnRemoveGp" class="btn btn-md btn-danger but4" runat="server" OnClick="btnRemoveGp_Click" Text="Отстрани од свои пациенти" />
 							</div>
-						</div>
+                            <div class="col-xs-3 col-xs-offset-10">
+                                <asp:Button CssClass="btn btn-info btn4" runat="server" Text="Дома" ID="btnHome" Font-Size="16" CausesValidation="false" OnClick="btnHome_Click" />
+                            </div>
+                        </div>
 						<hr id="hr"/>
 						<div class="row">
 							<div class="col-xs-6">

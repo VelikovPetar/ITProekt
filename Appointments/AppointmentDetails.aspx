@@ -4,153 +4,157 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
-        }
+    <meta charset="UTF-8"/>
+    <title>Детали за преглед</title>
+    <link rel="stylesheet" href="css/styleAppDetails.css"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 
-        .auto-style2 {
-            width: 215px;
-        }
+            <style>
+        body{
+            background: url('Resources/img7.jpg') no-repeat fixed 100%;
 
-        .auto-style3 {
-            width: 216px;
         }
+        .container
+        {
+            margin-top: 50px;
+        }
+        .pac{    
+            margin-left: -80px;
+            font-size: 1.2em;
+            font-style: oblique;
 
-        .auto-style4 {
-            width: 60%;
         }
+        .det{
+            margin-top: 50px;
+            margin-bottom: 50px;
 
-        .auto-style5 {
-            width: 216px;
-            height: 58px;
+            font-size: 1.5em;
         }
-
-        .auto-style6 {
-            height: 58px;
-            width: 634px;
+        hr{
+             margin-top: 100px;
+            margin-bottom: 50px;
         }
-        .auto-style7 {
-            width: 634px;
+        .izvb{
+            margin-top: 21px;
+        }
+        #btnPatientDetails {
+            margin-top:10px;
         }
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <table class="auto-style1">
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Label ID="Label1" runat="server" Text="Patient name:"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="lblPatientName" runat="server"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Button ID="btnPatientDetails" runat="server" OnClick="btnPatientDetails_Click" Text="Patient details" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Label ID="Label2" runat="server" Text="Patient surname:"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="lblPatientSurname" runat="server"></asp:Label>
-                    </td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Label ID="Label3" runat="server" Text="Patient ssn:"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="lblPatientSsn" runat="server"></asp:Label>
-                    </td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Label ID="Label4" runat="server" Text="Doctor name:"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="lblDoctorName" runat="server"></asp:Label>
-                    </td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Label ID="Label5" runat="server" Text="Doctor surname:"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="lblDoctorSurname" runat="server"></asp:Label>
-                    </td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Label ID="Label11" runat="server" Text="Date:"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="lblDate" runat="server"></asp:Label>
-                    </td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Label ID="Label13" runat="server" Text="Time:"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="lblTime" runat="server"></asp:Label>
-                    </td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-            </table>
-            <h4>
-                <asp:Label ID="lblReport" runat="server" Text="Report"></asp:Label>
-                <asp:Label ID="lblReportInfo" runat="server" ForeColor="#CC0000"></asp:Label>
-            </h4>
-            <table class="auto-style4" id="tableReport" runat="server">
-                <tr>
-                    <td class="auto-style3">Diagnosis:</td>
-                    <td class="auto-style7">
-                        <asp:TextBox ID="txtDiagnosis" runat="server" Height="48px" Width="344px" TextMode="MultiLine" ValidationGroup="ReportGroup"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtDiagnosis" Display="None" ErrorMessage="Diagnosis field cannot be empty!" ForeColor="Black" ValidationGroup="ReportGroup"></asp:RequiredFieldValidator>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style5">Therapy:</td>
-                    <td class="auto-style6">
-                        <asp:TextBox ID="txtTherapy" runat="server" Height="48px" Width="344px" TextMode="MultiLine" ValidationGroup="ReportGroup"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTherapy" Display="None" ErrorMessage="Therapy field cannot be empty!" ForeColor="Black" ValidationGroup="ReportGroup"></asp:RequiredFieldValidator>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style3">Remark:</td>
-                    <td class="auto-style7">
-                        <asp:TextBox ID="txtRemark" runat="server" Height="96px" Width="344px" TextMode="MultiLine" ValidationGroup="ReportGroup"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style3">
-                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="#CC0000" ValidationGroup="ReportGroup" />
-                    </td>
-                    <td class="auto-style7">
-                        &nbsp;</td>
-                </tr>
-            </table>
+       
+<div class="container col-xs-6 col-xs-offset-1">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2 style="text-align: left">Детали за преглед</h2>
         </div>
-        <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save changes" ValidationGroup="ReportGroup" />
-&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete report" />
-        <br />
-        <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add report" />
-    </form>
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1">
+                    <form class=" form-horizontal"  runat="server"  id="form1">
+                        <div>
+                          <asp:Button CssClass="btn btn-info" runat="server" Text="Дома" ID="btnHome" Font-Size="16" CausesValidation="false" OnClick="btnHome_Click"/>
+                      </div>
+                        <div class="pac">
+                            <div class="form-group">
+                                 <asp:Label ID="Label1" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="Име на пациент:"></asp:Label>
+                                 <asp:Label ID="lblPatientName" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" runat="server"></asp:Label>
+                            </div>
+
+                            <div class="form-group">
+                                <asp:Label ID="Label2" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="Презиме на пациент:"></asp:Label>
+                                <asp:Label ID="lblPatientSurname" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" runat="server"></asp:Label>
+                            </div>
+
+                            <div class="form-group">
+                                 <asp:Label ID="Label3" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="МБР на пациент:"></asp:Label>
+                                 <asp:Label ID="lblPatientSsn" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" runat="server"></asp:Label>
+                            </div>
+
+                            <div class="form-group">
+                                <asp:Label ID="Label4" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="Име на доктор:"></asp:Label>
+                                <asp:Label ID="lblDoctorName" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" runat="server"></asp:Label>
+                            </div>
+
+                            <div class="form-group">
+                                <asp:Label ID="Label5" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="Презиме на доктор:"></asp:Label>
+                                <asp:Label ID="lblDoctorSurname" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" runat="server"></asp:Label>
+                           
+                            </div>
+
+                            <div class="form-group">
+                                <asp:Label ID="Label11" class="control-label col-xs-3" runat="server" Font-Bold="true" Font-Size="16" Text="Датум:"></asp:Label>
+                                <asp:Label ID="lblDate" class="control-label col-xs-3" runat="server" Font-Bold="true" Font-Size="16" ></asp:Label>
+                            </div>
+
+                            <div class="form-group">
+                                <asp:Label ID="Label13" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="Време:"></asp:Label>
+                                <asp:Label ID="lblTime" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" ></asp:Label>
+                            </div>
+
+                            <div class="form-group">
+                            <asp:Label ID="lblReport" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="Извештај:"></asp:Label>
+                            <asp:Label ID="lblReportInfo" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" ForeColor="#CC0000"></asp:Label>
+                            </div>
+                             <div class=" col-xs-10 col-xs-offset-1 ">
+                             <asp:Button ID="btnPatientDetails" runat="server" OnClick="btnPatientDetails_Click" Font-Size="16" class="btn btn-info btn-lg" Text="Детали на пациент" ValidationGroup="ReportGroup" Font-Italic="False" />
+                            </div>
+                            
+                        </div>
+                        <hr/>
+                        <div class="det" id="tableReport" runat="server">
+                            <div class="form-group">
+                                <asp:Label ID="Label7" runat="server"  class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="Дијагноза:"></asp:Label>
+                                <div class="col-xs-8">
+                                     <asp:TextBox ID="txtDiagnosis" runat="server" Rows="4" Height="100px" TextMode="MultiLine" CssClass="TextBox" Width="90%"></asp:TextBox>
+                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtDiagnosis" Display="None" ErrorMessage="Diagnosis field cannot be empty!"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+
+                           <div class="form-group">
+                                <asp:Label ID="Label6" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="Терапија:"></asp:Label>
+                                <div class="col-xs-8">
+                                    <asp:TextBox ID="txtTherapy" runat="server" Rows="4" Height="100px" TextMode="MultiLine" CssClass="TextBox" Width="90%"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTherapy" Display="None" ErrorMessage="Therapy field cannot be empty!"></asp:RequiredFieldValidator>
+                                 </div>
+                            </div>
+
+                             <div class="form-group">
+                                <asp:Label ID="Label8" runat="server" class="control-label col-xs-3" Font-Bold="true" Font-Size="16" Text="Забелешка:"></asp:Label>
+                                <div class="col-xs-8">
+                                    <asp:TextBox ID="txtRemark" runat="server" Rows="7" Height="130px" TextMode="MultiLine" CssClass="TextBox" Width="90%"></asp:TextBox>
+                                </div>
+                            </div>
+
+                        </div>
+
+                   
+                    <div class=" col-xs-6  ">
+                        <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" class="btn btn-success  btn-block btn-lg" Font-Size="16" Text="Зачувај" ValidationGroup="ReportGroup" />
+                    </div>
+                    <div class=" col-xs-6  ">
+                        <asp:Button ID="btnDelete" runat="server" class="btn btn-danger  btn-block btn-lg" Font-Size="16" OnClick="btnDelete_Click" Text="Избриши" />
+                    </div>
+                    <div class=" col-xs-12 izvb">
+                        <asp:Button ID="btnAdd" runat="server" class="btn btn-primary  btn-block btn-lg" Font-Size="16" OnClick="btnAdd_Click" Text="Внеси извештај" />
+                    </div>
+
+                 </form>
+                </div>
+            </div>
+
+            <hr/>
+        </div>
+    </div>
+</div>
+    
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 </body>
 </html>

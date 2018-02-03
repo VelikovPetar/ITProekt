@@ -165,13 +165,28 @@ public partial class Appointments_AddAppointment : System.Web.UI.Page
         bool success = DBUtils.AttemptSaveAppointment(patientId, doctorId, dateTime);
         if (success)
         {
-            //lblInfo.Text = "Success";
-            //lblInfo.ForeColor = System.Drawing.Color.Black;
+            lblInfo.Text = "Success";
+            lblInfo.ForeColor = System.Drawing.Color.Black;
         }
         else
         {
-            //lblInfo.Text = MSG_ERROR_MAKING_APPOINTMENT;
-           // lblInfo.ForeColor = System.Drawing.Color.DarkRed;
+            lblInfo.Text = MSG_ERROR_MAKING_APPOINTMENT;
+            lblInfo.ForeColor = System.Drawing.Color.DarkRed;
+        }
+    }
+
+    protected void btnHome_Click(object sender, EventArgs e)
+    {
+        UserType userType = (UserType)Session["user_type"];
+        if (userType == UserType.DOCTOR_GP)
+        {
+            Response.Redirect("~/Home/GeneralPractitionerHomePage.aspx");
+            return;
+        }
+        if (userType == UserType.DOCTOR_SPECIALIST)
+        {
+            Response.Redirect("~/Home/SpecialistHomePage.aspx");
+            return;
         }
     }
 }

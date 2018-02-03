@@ -79,4 +79,19 @@ public partial class Appointments_AddReport : System.Web.UI.Page
             lblError.Text = MSG_ERROR_ADDING_REPORT;
         }
     }
+
+    protected void btnHome_Click(object sender, EventArgs e)
+    {
+        UserType userType = (UserType)Session["user_type"];
+        if (userType == UserType.DOCTOR_GP)
+        {
+            Response.Redirect("~/Home/GeneralPractitionerHomePage.aspx");
+            return;
+        }
+        if (userType == UserType.DOCTOR_SPECIALIST)
+        {
+            Response.Redirect("~/Home/SpecialistHomePage.aspx");
+            return;
+        }
+    }
 }

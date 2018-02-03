@@ -240,7 +240,7 @@ public partial class Auth_LoginPage : System.Web.UI.Page
     {
         string name = txtNamePatient.Text;
         string surname = txtSurnamePatient.Text;
-        string email = txtEmail.Text;
+        string email = txtEmailPatient.Text;
         string dateOfBirth = txtDateOfBirthPatient.Text; lblInfo.Text = dateOfBirth;
         string ssn = txtSsnPatient.Text;
         string password = Utils.CalculateMD5Hash(txtPasswordPatient.Text);

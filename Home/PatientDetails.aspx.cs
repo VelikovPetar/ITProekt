@@ -219,4 +219,19 @@ public partial class Home_PatientDetails : System.Web.UI.Page
             //lblGpInfo.Text = MSG_ERROR_UPDATING_GP;
         }
     }
+
+    protected void btnHome_Click(object sender, EventArgs e)
+    {
+        UserType userType = (UserType)Session["user_type"];
+        if (userType == UserType.DOCTOR_GP)
+        {
+            Response.Redirect("~/Home/GeneralPractitionerHomePage.aspx");
+            return;
+        }
+        if (userType == UserType.DOCTOR_SPECIALIST)
+        {
+            Response.Redirect("~/Home/SpecialistHomePage.aspx");
+            return;
+        }
+    }
 }

@@ -217,4 +217,20 @@ public partial class Appointments_AppointmentDetails : System.Web.UI.Page
         string patientId = (string)ViewState["patient_id"];
         Response.Redirect("~/Home/PatientDetails.aspx?patientId=" + Server.UrlEncode(patientId));
     }
+
+    protected void btnHome_Click(object sender, EventArgs e)
+    {
+        UserType userType = (UserType)Session["user_type"];
+        if (userType == UserType.DOCTOR_GP)
+        {
+            Response.Redirect("~/Home/GeneralPractitionerHomePage.aspx");
+            return;
+        }
+        if (userType == UserType.DOCTOR_SPECIALIST)
+        {
+            Response.Redirect("~/Home/SpecialistHomePage.aspx");
+            return;
+        }
+        Response.Redirect("~Home/PatientHomePage.aspx");
+    }
 }
