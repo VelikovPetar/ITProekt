@@ -28,9 +28,12 @@ public partial class Home_SpecialistDefaultPage : System.Web.UI.Page
         }
         if (!Page.IsPostBack)
         {
-            tabPersonalInfo.CssClass = "clicked";
-            multiView.ActiveViewIndex = 0;
+            //tabPersonalInfo.CssClass = "clicked";
+            //multiView.ActiveViewIndex = 0;
             ReadDoctorFromDb();
+            ReadPastAppointments();
+            ReadUpcomingAppointments();
+            ReadAllPatients();
         }
     }
 
@@ -43,45 +46,6 @@ public partial class Home_SpecialistDefaultPage : System.Web.UI.Page
     {
         UserType userType = (UserType)Session["user_type"];
         return userType == UserType.DOCTOR_SPECIALIST;
-    }
-
-    protected void tabPersonalInfo_Click(object sender, EventArgs e)
-    {
-        tabPersonalInfo.CssClass = "clicked";
-        tabPastAppointments.CssClass = "initial";
-        tabUpcomingAppointments.CssClass = "initial";
-        tabAllPatients.CssClass = "initial";
-        multiView.ActiveViewIndex = 0;
-    }
-
-    protected void tabPastAppointments_Click(object sender, EventArgs e)
-    {
-        tabPersonalInfo.CssClass = "initial";
-        tabPastAppointments.CssClass = "clicked";
-        tabUpcomingAppointments.CssClass = "initial";
-        tabAllPatients.CssClass = "initial";
-        multiView.ActiveViewIndex = 1;
-        ReadPastAppointments();
-    }
-
-    protected void tabUpcomingAppointments_Click(object sender, EventArgs e)
-    {
-        tabPersonalInfo.CssClass = "initial";
-        tabPastAppointments.CssClass = "initial";
-        tabUpcomingAppointments.CssClass = "clicked";
-        tabAllPatients.CssClass = "initial";
-        multiView.ActiveViewIndex = 2;
-        ReadUpcomingAppointments();
-    }
-
-    protected void tabAllPatients_Click(object sender, EventArgs e)
-    {
-        tabPersonalInfo.CssClass = "initial";
-        tabPastAppointments.CssClass = "initial";
-        tabUpcomingAppointments.CssClass = "initial";
-        tabAllPatients.CssClass = "clicked";
-        multiView.ActiveViewIndex = 3;
-        ReadAllPatients();
     }
 
     private void ReadDoctorFromDb()

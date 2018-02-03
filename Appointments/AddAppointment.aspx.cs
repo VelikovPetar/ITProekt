@@ -165,13 +165,13 @@ public partial class Appointments_AddAppointment : System.Web.UI.Page
         bool success = DBUtils.AttemptSaveAppointment(patientId, doctorId, dateTime);
         if (success)
         {
-            lblInfo.Text = "Success";
-            lblInfo.ForeColor = System.Drawing.Color.Black;
+            //lblInfo.Text = "Success";
+            //lblInfo.ForeColor = System.Drawing.Color.Black;
         }
         else
         {
-            lblInfo.Text = MSG_ERROR_MAKING_APPOINTMENT;
-            lblInfo.ForeColor = System.Drawing.Color.DarkRed;
+            //lblInfo.Text = MSG_ERROR_MAKING_APPOINTMENT;
+           // lblInfo.ForeColor = System.Drawing.Color.DarkRed;
         }
     }
 }

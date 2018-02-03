@@ -202,7 +202,7 @@ public partial class Home_PatientDetails : System.Web.UI.Page
         }
         else
         {
-            lblGpInfo.Text = MSG_ERROR_UPDATING_GP;
+            //lblGpInfo.Text = MSG_ERROR_UPDATING_GP;
         }
     }
 
@@ -216,7 +216,7 @@ public partial class Home_PatientDetails : System.Web.UI.Page
         }
         else
         {
-            lblGpInfo.Text = MSG_ERROR_UPDATING_GP;
+            //lblGpInfo.Text = MSG_ERROR_UPDATING_GP;
         }
     }
 }

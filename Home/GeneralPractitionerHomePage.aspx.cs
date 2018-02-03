@@ -27,49 +27,11 @@ public partial class Home_GeneralPractionerDefaultPage : System.Web.UI.Page
         }
         if (!Page.IsPostBack)
         {
-            tabPersonalInfo.CssClass = "clicked";
-            multiView.ActiveViewIndex = 0;
             ReadDoctorFromDb();
+            ReadGeneralPractionerPatients();
+            ReadPatientsWithoutGp();
+            ReadAllAppointments();
         }
-    }
-
-    protected void tabPersonalInfo_Click(object sender, EventArgs e)
-    {
-        tabPersonalInfo.CssClass = "clicked";
-        tabGpPatients.CssClass = "initial";
-        tabFreePatients.CssClass = "initial";
-        tabAllAppointments.CssClass = "initial";
-        multiView.ActiveViewIndex = 0;
-    }
-
-    protected void tabGpPatients_Click(object sender, EventArgs e)
-    {
-        tabPersonalInfo.CssClass = "initial";
-        tabGpPatients.CssClass = "clicked";
-        tabFreePatients.CssClass = "initial";
-        tabAllAppointments.CssClass = "initial";
-        multiView.ActiveViewIndex = 1;
-        ReadGeneralPractionerPatients();
-    }
-
-    protected void tabFreePatients_Click(object sender, EventArgs e)
-    {
-        tabPersonalInfo.CssClass = "initial";
-        tabGpPatients.CssClass = "initial";
-        tabFreePatients.CssClass = "clicked";
-        tabAllAppointments.CssClass = "initial";
-        multiView.ActiveViewIndex = 2;
-        ReadPatientsWithoutGp();
-    }
-
-    protected void tabAllAppointments_Click(object sender, EventArgs e)
-    {
-        tabPersonalInfo.CssClass = "initial";
-        tabGpPatients.CssClass = "initial";
-        tabFreePatients.CssClass = "initial";
-        tabAllAppointments.CssClass = "clicked";
-        multiView.ActiveViewIndex = 3;
-        ReadAllAppointments();
     }
 
     private bool IsUserLoggedIn()

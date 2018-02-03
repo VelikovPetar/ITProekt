@@ -28,38 +28,13 @@ public partial class Home_PatientDefaultPage : System.Web.UI.Page
         }
         if (!Page.IsPostBack)
         {
-            tabPersonalInfo.CssClass = "clicked";
-            multiView.ActiveViewIndex = 0;
+            //tabPersonalInfo.CssClass = "clicked";
+            //multiView.ActiveViewIndex = 0;
             ReadPatientFromDb();
             DisplayPatient();
             ReadPastAppointments();
             ReadUpcomingAppointments();
         }
-    }
-
-
-    protected void tabPersonalInfo_Click(object sender, EventArgs e)
-    {
-        tabPersonalInfo.CssClass = "clicked";
-        tabPastAppointments.CssClass = "initial";
-        tabUpcomingAppointments.CssClass = "initial";
-        multiView.ActiveViewIndex = 0;
-    }
-
-    protected void tabPastAppointments_Click(object sender, EventArgs e)
-    {
-        tabPersonalInfo.CssClass = "initial";
-        tabPastAppointments.CssClass = "clicked";
-        tabUpcomingAppointments.CssClass = "initial";
-        multiView.ActiveViewIndex = 1;
-    }
-
-    protected void tabUpcomingAppointments_Click(object sender, EventArgs e)
-    {
-        tabPersonalInfo.CssClass = "initial";
-        tabPastAppointments.CssClass = "initial";
-        tabUpcomingAppointments.CssClass = "clicked";
-        multiView.ActiveViewIndex = 2;
     }
 
     private void ReadPatientFromDb()

@@ -5,138 +5,144 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
-            height: 83px;
-        }
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/hp_mat.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 
-        .auto-style2 {
-            width: 134px;
-        }
+	<meta charset="utf-8"/>
 
-        .auto-style3 {
-            width: 146px;
-        }
+     <style>
+        body {
+  padding : 10px ;
+  background-image: url('css/img/img1.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%
+  
+}
+.container{
+	margin-left: 10px;
+	margin-top: 80px;
+}
+#exTab1 .tab-content {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
 
-        .initial {
-            display: block;
-            padding: 4px 18px 4px 18px;
-            float: left;
-            background: url("../Images/Tab.png") no-repeat right top;
-            color: Black;
-            font-weight: bold;
-        }
+#exTab2 h3 {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
 
-            .initial:hover {
-                color: White;
-                background: url("../Images/TabSelected.png") no-repeat right top;
-            }
+/* remove border radius for the tab */
 
-        .clicked {
-            float: left;
-            display: block;
-            background: url("../Images/TabSelected.png") no-repeat right top;
-            padding: 4px 18px 4px 18px;
-            color: Black;
-            font-weight: bold;
-            color: White;
-        }
+#exTab1 .nav-pills > li > a {
+  border-radius: 0;
+}
 
-        .auto-style4 {
-            width: 100%;
-        }
+/* change border radius for the tab , apply corners on top*/
 
-        .auto-style5 {
-            width: 142px;
-        }
+#tabb .nav-pills > li > a {
+  border-radius: 4px 4px 0 0 ;
+  background-color:  #80ccff;
+  color:white;
+
+}
+#tabb .nav-pills > li.active > a{
+	background-color: #0099ff;
+}
+
+#tabb .tab-content {
+  background-color:  white;
+  padding : 5px 15px;
+  border-style: solid;
+  border-color:  #0099ff;
+  border-width: 3px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.table{
+	border:1px solid black;
+	width: 100%
+}
+.table th{
+	border-color: black;
+
+}
+.table td{
+	
+}
+#table1 td,#table1 th{
+	border:2px inset #999999;
+	border-bottom-left-radius:5px; 
+}
+#prtab{
+	margin-top: 35px;
+	margin-left: 30px;
+}
+tr:nth-child(even){
+	background-color:#f2f2f2;
+}
+tr:nth-child(odd){
+	background-color: #b3d9ff;
+}
+
+.tabovi{
+    background: none;
+    border: none;
+}
+
+
     </style>
+   
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
+    <form runat="server">
+        <div id="tabb" class="container">	
+            <ul  class="nav nav-pills">
+			   <li class="active" id="bt">
+        		<a  href="#tab1" data-toggle="tab"><asp:Button  ID="tabPersonalInfo" runat="server"  class="btn btn-primary tabovi" Text="Лични информации"></asp:Button></a>
+			    </li>
+                <li id="bt">
+                    <a href="#tab2" data-toggle="tab"><asp:Button  ID="tabPastAppointments" runat="server"  class="btn btn-primary tabovi" Text="Минати Прегледи"></asp:Button></a>
+			    </li>
+			    <li id="bt">
+                    <a href="#tab3" data-toggle="tab"><asp:Button  ID="tabUpcomingAppointments" runat="server"  class="btn btn-primary tabovi" Text="Идни Прегледи"></asp:Button></a>
+			    </li>
+		    </ul>
 
-            <table class="auto-style1">
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Button ID="tabPersonalInfo" runat="server" Text="Personal Info" CssClass="initial" BorderStyle="None" OnClick="tabPersonalInfo_Click" />
-                    </td>
-                    <td class="auto-style3">
-                        <asp:Button ID="tabPastAppointments" runat="server" Text="Past appointments" CssClass="initial" BorderStyle="None" OnClick="tabPastAppointments_Click" />
-                    </td>
-                    <td>
-                        <asp:Button ID="tabUpcomingAppointments" runat="server" Text="Upcoming appointments" CssClass="initial" BorderStyle="None" OnClick="tabUpcomingAppointments_Click" />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3">
-                        <asp:MultiView ID="multiView" runat="server">
-                            <asp:View ID="viewPersonalInfo" runat="server">
-                                <h4>Personal info</h4>
-                                <table class="auto-style4">
-                                    <tr>
-                                        <td class="auto-style5">
-                                            <asp:Label ID="Label1" runat="server" Text="Name:"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <asp:Label ID="lblName" runat="server" Font-Bold="true"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="auto-style5">
-                                            <asp:Label ID="Label2" runat="server" Text="Surname:"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <asp:Label ID="lblSurname" runat="server" Font-Bold="true"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="auto-style5">
-                                            <asp:Label ID="Label3" runat="server" Text="Ssn:"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <asp:Label ID="lblSsn" runat="server" Font-Bold="true"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="auto-style5">
-                                            <asp:Label ID="Label4" runat="server" Text="Address:"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <asp:Label ID="lblAddress" runat="server" Font-Bold="true"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="auto-style5">
-                                            <asp:Label ID="Label5" runat="server" Text="Email:"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <asp:Label ID="lblEmail" runat="server" Font-Bold="true"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="auto-style5">
-                                            <asp:Label ID="Label6" runat="server" Text="Date of birth:"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <asp:Label ID="lblDateOfBirth" runat="server" Font-Bold="true"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="auto-style5">
-                                            <asp:Label ID="Label7" runat="server" Text="General practitioner:"></asp:Label>
-                                        </td>
-                                        <td>
-                                            <asp:Label ID="lblDoctor" runat="server" Font-Bold="true"></asp:Label>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </asp:View>
-                            <asp:View ID="viewPastAppointments" runat="server">
-                                <h4>Past appointments<asp:Label ID="lblPastAppointmentsInfo" runat="server" ForeColor="#CC0000"></asp:Label>
-                                </h4>
-                                <p>
-                                    <asp:GridView ID="gvPastAppointments" runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnSelectedIndexChanged="gvPastAppointments_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="gvPastAppointments_PageIndexChanging" PageSize="5">
+			<div class="tab-content clearfix">
+			  	<div class="tab-pane active" id="tab1">
+	          		<br />
+                    <asp:Label ID="Label1" runat="server" Text="Име:"></asp:Label>
+                    <asp:Label ID="lblName" runat="server" Font-Bold="true"></asp:Label>
+	          		<br />
+                    <asp:Label ID="Label2" runat="server" Text="Презиме:"></asp:Label>
+                    <asp:Label ID="lblSurname" runat="server" Font-Bold="true"></asp:Label>
+	          		<br />
+                      <asp:Label ID="Label4" runat="server" Text="Матичен број:"></asp:Label>
+                    <asp:Label ID="lblSsn" runat="server" Font-Bold="true"></asp:Label>
+	          		<br />
+                      <asp:Label ID="Label6" runat="server" Text="Адреса:"></asp:Label>
+                    <asp:Label ID="lblAddress" runat="server" Font-Bold="true"></asp:Label>
+	          		<br />
+                      <asp:Label ID="Label8" runat="server" Text="Е-маил:"></asp:Label>
+                    <asp:Label ID="lblEmail" runat="server" Font-Bold="true"></asp:Label>
+	          		<br />
+                      <asp:Label ID="Label10" runat="server" Text="Датум на раѓање:"></asp:Label>
+                    <asp:Label ID="lblDateOfBirth" runat="server" Font-Bold="true"></asp:Label>
+	          		<br />
+                      <asp:Label ID="Label12" runat="server" Text="Матичен доктор:"></asp:Label>
+                    <asp:Label ID="lblDoctor" runat="server" Font-Bold="true"></asp:Label>
+	          		<br />
+               
+				</div>
+				<div class="tab-pane" id="tab2">
+          			<div id="prtab" >	
+                          <asp:Label ID="lblPastAppointmentsInfo" runat="server" ForeColor="#CC0000"></asp:Label>
+                                    
+                          <asp:GridView ID="gvPastAppointments" runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnSelectedIndexChanged="gvPastAppointments_SelectedIndexChanged" >
                                         <Columns>
                                             <asp:BoundField DataField="id" HeaderText="Appointment Id" />
                                             <asp:BoundField DataField="date_time" HeaderText="Date and time" />
@@ -145,29 +151,30 @@
                                             <asp:CommandField SelectText="Details" ShowSelectButton="True" />
                                         </Columns>
                                     </asp:GridView>
-                                </p>
-                            </asp:View>
-                            <asp:View ID="viewUpcomingAppointments" runat="server">
-                                <h4>Upcoming appointments<asp:Label ID="lblUpcomingAppointmentsInfo" runat="server" ForeColor="#CC0000"></asp:Label>
-                                </h4>
-                                <p>
-                                    <asp:GridView ID="gvUpcomingAppointments" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvUpcomingAppointments_SelectedIndexChanged" AllowPaging="True" DataKeyNames="id" OnPageIndexChanging="gvUpcomingAppointments_PageIndexChanging" PageSize="5">
+                    
+	          		</div>
+				</div>
+        		<div class="tab-pane" id="tab3">
+          			<div id="prtab">	
+	          			 <asp:Label ID="lblUpcomingAppointmentsInfo" runat="server" ForeColor="#CC0000"></asp:Label>
+                                    <asp:GridView ID="gvUpcomingAppointments" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvUpcomingAppointments_SelectedIndexChanged" DataKeyNames="id" >
                                         <Columns>
-                                            <asp:BoundField DataField="id" HeaderText="AppointmentId" />
+                                            <asp:BoundField DataField="id" HeaderText="Appointment Id" />
                                             <asp:BoundField DataField="date_time" HeaderText="Date and time" />
                                             <asp:BoundField DataField="full_name" HeaderText="Doctor" />
                                             <asp:CheckBoxField DataField="has_report" HeaderText="Report" />
                                             <asp:CommandField SelectText="Details" ShowSelectButton="True" />
                                         </Columns>
                                     </asp:GridView>
-                                </p>
-                            </asp:View>
-                        </asp:MultiView>
-                    </td>
-                </tr>
-            </table>
-
-        </div>
-    </form>
+                                
+	          		</div>
+				</div>
+  			</div>
+</div>
+<script src="js/jquery.js" type="text/javascript"></script>
+	  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</form>
 </body>
 </html>

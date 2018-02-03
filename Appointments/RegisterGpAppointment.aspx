@@ -46,7 +46,7 @@
                 <td>
                     <asp:TextBox ID="txtTime" runat="server"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTime" Display="None" ErrorMessage="You must pick a time!"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtTime" ErrorMessage="RegularExpressionValidator" ValidationExpression="^([0-9]|0[0-9]|1[0-9]|[0-3]):[0-5][0-9]$"></asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtTime" ErrorMessage="Time bust be in format: HH:mm!" ValidationExpression="^([0-9]|0[0-9]|1[0-9]|[0-3]):[0-5][0-9]$" Display="None"></asp:RegularExpressionValidator>
                 </td>
             </tr>
             <tr>
