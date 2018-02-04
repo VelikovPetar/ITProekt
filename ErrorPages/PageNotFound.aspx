@@ -10,20 +10,20 @@
             background: url('../Images/img3.jpg') no-repeat fixed 100%;
             background-size: cover;
         }
-        h1 {
-            margin-top:200px;
-            margin-left:300px
-        }
-        span {
-            background-color: white;
-            padding: 10px;
+        .jumbotron {
+            margin-top:150px;
+            margin-left:200px;
+            padding-left:50px;
+            width:50%;
+            
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div class="jumbotron">
         <h1><span>This page does not exist!</span></h1>
+        <p>We're sorry but it appears the website adress entered was incorrect.</p>
     </div>
     </form>
 </body>

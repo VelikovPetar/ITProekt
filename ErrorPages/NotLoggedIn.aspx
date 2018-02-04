@@ -8,27 +8,29 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
     <style>
         body {
-            background: url('../Images/img3.jpg') no-repeat fixed 100%;
+            background: url('../Images/img7.jpg') no-repeat fixed 100%;
             background-size: cover;
         }
-        h1 {
-            margin-top:200px;
-            margin-left:300px
+        .jumbotron {
+            margin-top:150px;
+            margin-left:200px;
+            padding-left:50px;
+            width:50%;
         }
-        span {
-            background-color: white;
-            padding: 10px;
+        .btn{
+            margin-top:20px;
+            width:200px;
+            height:70px;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <h1><span>You have to be logged in to access this page!</span></h1>
-        <p>
-            <asp:Button ID="btnLogin" runat="server" OnClick="btnLogin_Click" Text="Најава" CssClass="btn btn-info" Font-Size="16"/>
-        </p>
+    <div class="jumbotron">
+        <h1>You have to be logged in to access this page!</h1>
+        <asp:Button ID="btnLogin" runat="server" Text="Log in" CssClass="btn btn-lg btn-info" OnClick="btnLogin_Click" Font-Bold="true" Font-Size="20"/>
     </div>
+        
     </form>
 </body>
 </html>
