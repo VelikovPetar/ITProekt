@@ -99,6 +99,11 @@
             background: none;
             border: none;
         }
+
+        
+        .odj {
+            margin-left: 25px;
+        }
     </style>
 </head>
 <body>
@@ -178,7 +183,7 @@
                 </div>
             </div>
         </div>
-        <asp:Button ID="btnLogout" CssClass="btn btn-primary btn-danger but1" runat="server" Text="Одјавете се" OnClick="btnLogout_Click" />
+        <asp:Button ID="btnLogout" CssClass="btn btn-primary btn-danger but1 odj" runat="server" Text="Одјавете се" OnClick="btnLogout_Click" />
         <script src="js/jquery.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
