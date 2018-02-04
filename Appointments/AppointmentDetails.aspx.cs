@@ -231,6 +231,6 @@ public partial class Appointments_AppointmentDetails : System.Web.UI.Page
             Response.Redirect("~/Home/SpecialistHomePage.aspx");
             return;
         }
-        Response.Redirect("~Home/PatientHomePage.aspx");
+        Response.Redirect("~/Home/PatientHomePage.aspx");
     }
 }

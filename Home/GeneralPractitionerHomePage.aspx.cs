@@ -180,4 +180,11 @@ public partial class Home_GeneralPractionerDefaultPage : System.Web.UI.Page
     {
         Response.Redirect("~/Appointments/RegisterGpAppointment.aspx");
     }
+
+    protected void btnLogout_Click(object sender, EventArgs e)
+    {
+        Session["user_id"] = null;
+        Session["user_type"] = null;
+        Response.Redirect("~/Auth/LoginPage.aspx");
+    }
 }

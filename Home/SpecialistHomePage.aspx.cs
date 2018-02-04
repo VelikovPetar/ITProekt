@@ -176,4 +176,11 @@ public partial class Home_SpecialistDefaultPage : System.Web.UI.Page
         string id = gvAllPatients.SelectedDataKey.Value.ToString();
         Response.Redirect("~/Home/PatientDetails.aspx?patientId=" + Server.UrlEncode(id));
     }
+
+    protected void btnLogout_Click(object sender, EventArgs e)
+    {
+        Session["user_id"] = null;
+        Session["user_type"] = null;
+        Response.Redirect("~/Auth/LoginPage.aspx");
+    }
 }
